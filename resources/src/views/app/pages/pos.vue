@@ -22,7 +22,7 @@
                 ></i>
                 <!-- Grid menu Dropdown -->
 
-                <div class="dropdown">
+           <!--     <div class="dropdown">
                   <b-dropdown
                     id="dropdown"
                     text="Dropdown Button"
@@ -59,7 +59,7 @@
                 <i title="sa" class="flag-icon flag-icon-squared flag-icon-sa"></i>
                 <span class="title-lang">Arabic</span>
               </a>
-              <a @click="SetLocal('tur')">
+             &lt;!&ndash; <a @click="SetLocal('tur')">
                 <i title="sa" class="flag-icon flag-icon-squared flag-icon-tr"></i>
                 <span class="title-lang">Turkish</span>
               </a>
@@ -115,7 +115,7 @@
                 <i title="sa" class="flag-icon flag-icon-squared flag-icon-kr"></i>
                 <span class="title-lang">Korean</span>
               </a>
-             
+
               <a @click="SetLocal('ba')">
                 <i title="sa" class="flag-icon flag-icon-squared flag-icon-bd"></i>
                 <span class="title-lang">Bangla</span>
@@ -124,12 +124,12 @@
               <a @click="SetLocal('br')">
                 <i title="pt" class="flag-icon flag-icon-squared flag-icon-pt"></i>
                 <span class="title-lang">Portuguese</span>
-              </a>
+              </a>&ndash;&gt;
 
             </div>
                     </vue-perfect-scrollbar>
                   </b-dropdown>
-                </div>
+                </div>-->
 
                 <!-- User avatar dropdown -->
                 <div class="dropdown">
@@ -561,11 +561,11 @@
 
                <!-- Product -->
                 <b-col md="12" class="mt-2 mb-2">
-                 
+
                   <div id="autocomplete" class="autocomplete">
-                    <input 
+                    <input
                      :placeholder="$t('Scan_Search_Product_by_Code_Name')"
-                      @input='e => search_input = e.target.value' 
+                      @input='e => search_input = e.target.value'
                       @keyup="search(search_input)"
                       @focus="handleFocus"
                       @blur="handleBlur"
@@ -1268,7 +1268,7 @@ export default {
           GrandTotal: "",
           paid_amount: ""
         },
-        
+
         details: [],
         setting: {
           logo: "",
@@ -1513,7 +1513,7 @@ export default {
             }else{
               this.CreatePOS();
             }
-       
+
         }
       });
     },
@@ -1826,7 +1826,7 @@ export default {
         NProgress.done();
         this.makeToast("danger", this.$t("InvalidData"), this.$t("Failed"));
       } else {
-        
+
         axios
           .post("pos/create_pos", {
             client_id: this.sale.client_id,
@@ -2034,7 +2034,7 @@ export default {
       this.CaclulTotal();
       this.$forceUpdate();
     },
-  
+
     //---------- keyup OrderTax
     keyup_OrderTax() {
       if (isNaN(this.sale.tax_rate)) {
@@ -2080,7 +2080,7 @@ export default {
             this.$t("Warning")
           );
           this.payment.amount = 0;
-        } 
+        }
         else if (this.payment.amount > this.GrandTotal) {
           this.makeToast(
             "warning",
@@ -2095,7 +2095,7 @@ export default {
     Verified_Received_Amount() {
       if (isNaN(this.payment.received_amount)) {
         this.payment.received_amount = 0;
-      } 
+      }
     },
     //-----------------------------------Delete Detail Product ------------------------------\\
     delete_Product_Detail(id) {
@@ -2179,7 +2179,7 @@ export default {
         );
       }
     },
-   
+
     //---------------------------------- Check if Product Exist in Order List ---------------------\\
     Check_Product_Exist(product, id) {
       // this.audio.play();

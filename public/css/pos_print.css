@@ -1,4 +1,4 @@
-@media print { 
+@media print {
 
   .change{
     font-size: 10px!important;
@@ -6,7 +6,7 @@
 
   * {
     font-size: 12px;
-    line-height: 18px;   
+    line-height: 18px;
   }
 
   body{
@@ -19,7 +19,7 @@
   #invoice-POS table tr{
     border-bottom: 2px dotted #05070b;
   }
- 
+
 
   @page {
     margin: 0;
@@ -35,11 +35,11 @@
   min-height: 100vh;
 }
 
-#invoice-POS h1, 
-#invoice-POS h2,  
-#invoice-POS h3, 
-#invoice-POS h4, 
-#invoice-POS h5, 
+#invoice-POS h1,
+#invoice-POS h2,
+#invoice-POS h3,
+#invoice-POS h4,
+#invoice-POS h5,
 #invoice-POS h6{
   color: #05070b;
   font-weight: bolder;
@@ -103,7 +103,7 @@ align-content: center;
     height: 100vh;
     min-height: 100vh;
     overflow: scroll;
-  };
+  }
 
 }
 
@@ -163,7 +163,7 @@ tfoot tr th:first-child {text-align: left;}
   max-width:400px;
   margin:0px auto;
 }
-  
+
 
 #top .logo{
     height: 100px;
@@ -183,7 +183,7 @@ tfoot tr th:first-child {text-align: left;}
 .title{
   float: right;
 }
-.title p{text-align: right;} 
+.title p{text-align: right;}
 table{
   width: 100%;
   border-collapse: collapse;
@@ -209,7 +209,7 @@ text-align: center;
 .quantity {
   max-width: 95px;
   width: 95px;
-}  
+}
 
 .quantity input {
   text-align: center;

@@ -1,3 +1,4 @@
+<!--
 <template>
   <div>
     <div class="customizer" :class="{ open: isOpen }">
@@ -57,7 +58,7 @@
                 <i title="sa" class="flag-icon flag-icon-squared flag-icon-sa"></i>
                 <span class="title-lang">Arabic</span>
               </a>
-              <a @click="SetLocal('tur')">
+             &lt;!&ndash; <a @click="SetLocal('tur')">
                 <i title="sa" class="flag-icon flag-icon-squared flag-icon-tr"></i>
                 <span class="title-lang">Turkish</span>
               </a>
@@ -112,7 +113,7 @@
                 <i title="sa" class="flag-icon flag-icon-squared flag-icon-kr"></i>
                 <span class="title-lang">Korean</span>
               </a>
-           
+
               <a @click="SetLocal('ba')">
                 <i title="sa" class="flag-icon flag-icon-squared flag-icon-bd"></i>
                 <span class="title-lang">Bangla</span>
@@ -122,7 +123,7 @@
                 <i title="pt" class="flag-icon flag-icon-squared flag-icon-pt"></i>
                 <span class="title-lang">Portuguese</span>
               </a>
-            
+            &ndash;&gt;
             </div>
           </div>
         </div>
@@ -157,7 +158,7 @@ export default {
         "ba",
         "br",
       ],
-      
+
     };
   },
 
@@ -178,10 +179,11 @@ export default {
       this.$store.dispatch("language/setLanguage", locale);
       Fire.$emit("ChangeLanguage");
     },
-   
+
   },
 };
 </script>
 
 <style lang="scss" scoped>
 </style>
+-->

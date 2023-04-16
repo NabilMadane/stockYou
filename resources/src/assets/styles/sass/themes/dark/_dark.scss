@@ -390,7 +390,7 @@
     }
   }
 
-  // vertical sidebar layout two 
+  // vertical sidebar layout two
   .layout-sidebar-vertical-two {
     .sidebar-panel {
       box-shadow: 0 1px 15px $dark-forground, 0 1px 6px $dark-forground;
@@ -443,7 +443,7 @@
     background-color: $dark-bg;
   }
 
-  // subheader 
+  // subheader
   .subheader {
     background-color: $dark-bg;
     .subheader-navbar{
@@ -458,7 +458,7 @@
    }
 }
 
-  // plugins vue-navigation-bar 
+  // plugins vue-navigation-bar
   .vnb {
     background-color: $dark-bg;
     .tippy-box{
@@ -466,9 +466,9 @@
         background-color: $dark-bg !important;
     }
     &__menu-options {
-      
+
       &__option {
-        
+
         &__link {
           color: $dark-heading;
           .vnb__menu-options__option__arrow{
@@ -484,49 +484,49 @@
               fill: $dark-heading;
             }
           }
-          
+
           &__icon {
             svg {
               fill:$primary !important;
             }
           }
         }
-   
-       
-   
-        
-   
-        
+
+
+
+
+
+
       }
     }
-   
+
     &__sub-menu-options {
       background-color: $dark-bg;
-     
+
       &__option {
         &__link {
-          border-left: 2px solid #8B5CF6;
+          border-left: 2px solid #1b47a9;
           color: $dark-heading;
           &:focus {
             outline: none;
             border: 1px solid none;
           }
-         
-         
+
+
           &:hover {
-            background-color:#8B5CF6 ;
+            background-color:#1b47a9 ;
             color: $dark-heading  !important;
-            
+
           }
         }
       }
     }
-   
-   
-   
-  
+
+
+
+
   }
-  
+
   .vnb__popup{
       height: 80vh !important;
       overflow-x:hidden !important;

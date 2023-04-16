@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,10 +17,19 @@ use Illuminate\Support\Facades\Storage;
 
 //------------------------------------------------------------------\\
 
+Route::any('/debug', function (){
+
+$a=1;
+   if(1){
+       echo $a;
+   }
+
+});
+
 Route::post('/login', [
     'uses' => 'Auth\LoginController@login',
     'middleware' => 'Is_Active',
-]);
+]); 
 
 Route::get('password/find/{token}', 'PasswordResetController@find');
 

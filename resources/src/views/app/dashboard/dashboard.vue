@@ -4,7 +4,7 @@
     <div v-if="loading" class="loading_page spinner spinner-primary mr-3"></div>
     <div v-else-if="!loading && currentUserPermissions && currentUserPermissions.includes('dashboard')">
       <!-- warehouse -->
-      <b-row>
+      <!--<b-row>
         <b-col lg="4" md="4" sm="12">
           <b-form-group :label="$t('Filter_by_warehouse')">
             <v-select
@@ -16,7 +16,7 @@
             />
           </b-form-group>
         </b-col>
-      </b-row>
+      </b-row>-->
 
       <b-row>
         <!-- ICON BG -->
@@ -49,7 +49,7 @@
           </router-link>
         </b-col>
 
-        <b-col lg="3" md="6" sm="12">
+<!--        <b-col lg="3" md="6" sm="12">
           <router-link tag="a" class to="/app/sale_return/list">
             <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
               <i class="i-Right-4"></i>
@@ -61,9 +61,34 @@
               </div>
             </b-card>
           </router-link>
-        </b-col>
-
+        </b-col>-->
         <b-col lg="3" md="6" sm="12">
+          <router-link tag="a" class to="/app/products/list">
+            <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
+              <i class="i-Right-4"></i>
+              <div class="content">
+                <p class="text-muted mt-2 mb-0">{{$t('Stock')}}</p>
+                <p
+                  class="text-primary text-24 line-height-1 mb-2"
+                >{{currentUser.currency}} {{report_today.stock?report_today.stock:0}}</p>
+              </div>
+            </b-card>
+          </router-link>
+        </b-col>
+          <b-col lg="3" md="6" sm="12">
+              <router-link tag="a" class to="/app/sales/list">
+                  <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
+                      <i class="i-Left-4"></i>
+                      <div class="content">
+                          <p class="text-muted mt-2 mb-0">{{$t('Loan')}}</p>
+                          <p
+                              class="text-primary text-24 line-height-1 mb-2"
+                          >{{currentUser.currency}} {{report_today.prete?report_today.prete:0}}</p>
+                      </div>
+                  </b-card>
+              </router-link>
+          </b-col>
+      <!--  <b-col lg="3" md="6" sm="12">
           <router-link tag="a" class to="/app/purchase_return/list">
             <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
               <i class="i-Left-4"></i>
@@ -75,7 +100,7 @@
               </div>
             </b-card>
           </router-link>
-        </b-col>
+        </b-col>-->
 
       </b-row>
 
@@ -221,7 +246,7 @@
     </div>
 
   </div>
-  
+
   <!-- ============ Body content End ============= -->
 </template>
 <script>
@@ -424,7 +449,7 @@ export default {
           var dark_heading = "#c2c6dc";
 
           this.echartCustomer = {
-            color: ["#6D28D9", "#8B5CF6", "#A78BFA", "#C4B5FD", "#7C3AED"],
+            color: ["#6D28D9", "#1b47a9", "#A78BFA", "#C4B5FD", "#7C3AED"],
             tooltip: {
               show: true,
               backgroundColor: "rgba(0, 0, 0, .8)"
@@ -494,7 +519,7 @@ export default {
             ]
           };
           this.echartProduct = {
-            color: ["#6D28D9", "#8B5CF6", "#A78BFA", "#C4B5FD", "#7C3AED"],
+            color: ["#6D28D9", "#1b47a9", "#A78BFA", "#C4B5FD", "#7C3AED"],
             tooltip: {
               show: true,
               backgroundColor: "rgba(0, 0, 0, .8)"
@@ -525,7 +550,7 @@ export default {
               borderRadius: 0,
               orient: "horizontal",
               x: "right",
-              data: ["Sales", "Purchases"]
+              data: [this.$t("Sales"), this.$t("Purchases")]
             },
             grid: {
               left: "8px",
@@ -590,9 +615,9 @@ export default {
 
             series: [
               {
-                name: "Sales",
+                name: this.$t("Sales"),
                 data: responseData.sales.original.data,
-                label: { show: false, color: "#8B5CF6" },
+                label: { show: false, color: "#1b47a9" },
                 type: "bar",
                 color: "#A78BFA",
                 smooth: true,
@@ -606,7 +631,7 @@ export default {
                 }
               },
               {
-                name: "Purchases",
+                name: this.$t("Purchases"),
                 data: responseData.purchases.original.data,
 
                 label: { show: false, color: "#0168c1" },
@@ -633,18 +658,18 @@ export default {
     //------------------------------Get Month -------------------------\\
     GetMonth() {
       var months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
+          this.$t("January"),
+          this.$t("February"),
+          this.$t("March"),
+          this.$t("April"),
+          this.$t("May"),
+          this.$t("June"),
+          this.$t("July"),
+          this.$t("August"),
+          this.$t("September"),
+          this.$t("October"),
+          this.$t("November"),
+          this.$t("December"),
       ];
       var now = new Date();
       this.CurrentMonth = months[now.getMonth()];

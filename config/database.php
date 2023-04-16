@@ -137,5 +137,6 @@ return [
         ],
 
     ],
+    /*'dump_command_path' =>'C:\wamp64\bin\mysql\mysql5.7.40\bin'*/
 
 ];

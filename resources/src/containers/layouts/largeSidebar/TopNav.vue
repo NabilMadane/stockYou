@@ -15,7 +15,7 @@
     <div style="margin: auto"></div>
 
     <div class="header-part-right">
-      <router-link 
+      <router-link
         v-if="currentUserPermissions && currentUserPermissions.includes('Pos_view')"
         class="btn btn-outline-primary tn-sm btn-rounded"
         to="/app/pos"
@@ -26,7 +26,7 @@
       <i class="i-Full-Screen header-icon d-none d-sm-inline-block" @click="handleFullScreen"></i>
       <!-- Grid menu Dropdown -->
 
-      <div class="dropdown">
+     <!-- <div class="dropdown">
         <b-dropdown
           id="dropdown"
           text="Dropdown Button"
@@ -62,7 +62,7 @@
                 <i title="sa" class="flag-icon flag-icon-squared flag-icon-sa"></i>
                 <span class="title-lang">Arabic</span>
               </a>
-              <a @click="SetLocal('tur')">
+             &lt;!&ndash; <a @click="SetLocal('tur')">
                 <i title="sa" class="flag-icon flag-icon-squared flag-icon-tr"></i>
                 <span class="title-lang">Turkish</span>
               </a>
@@ -118,7 +118,7 @@
                 <i title="sa" class="flag-icon flag-icon-squared flag-icon-kr"></i>
                 <span class="title-lang">Korean</span>
               </a>
-             
+
               <a @click="SetLocal('ba')">
                 <i title="sa" class="flag-icon flag-icon-squared flag-icon-bd"></i>
                 <span class="title-lang">Bangla</span>
@@ -127,16 +127,16 @@
               <a @click="SetLocal('br')">
                 <i title="pt" class="flag-icon flag-icon-squared flag-icon-pt"></i>
                 <span class="title-lang">Portuguese</span>
-              </a>
+              </a>&ndash;&gt;
 
             </div>
           </vue-perfect-scrollbar>
         </b-dropdown>
-      </div>
+      </div>-->
       <!-- Notificaiton -->
       <div class="dropdown">
         <b-dropdown
-          id="dropdown-1" 
+          id="dropdown-1"
           text="Dropdown Button"
           class="m-md-2 badge-top-container d-none  d-sm-inline-block"
           toggle-class="text-decoration-none"
@@ -167,7 +167,7 @@
                </router-link>
               </div>
             </div>
-           
+
           </vue-perfect-scrollbar>
         </b-dropdown>
       </div>
@@ -229,7 +229,7 @@ export default {
   },
 
   data() {
-  
+
     return {
       langs: [
         "en",
@@ -250,19 +250,19 @@ export default {
         "ba",
         "br",
       ],
-      
+
       isDisplay: true,
       isStyle: true,
       isSearchOpen: false,
       isMouseOnMegaMenu: true,
       isMegaMenuOpen: false,
       is_Load:false,
-     
+
     };
   },
- 
+
    computed: {
-     
+
      ...mapGetters([
        "currentUser",
       "getSideBarToggleProperties",
@@ -274,7 +274,7 @@ export default {
   },
 
   methods: {
-    
+
     ...mapActions([
       "changeSecondarySidebarProperties",
       "changeSidebarProperties",
