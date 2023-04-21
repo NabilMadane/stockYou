@@ -380,7 +380,7 @@ class DashboardController extends Controller
                 }else{
                     return $query->whereIn('warehouse_id', $array_warehouses_id);
                 }})
-            ->get(DB::raw('SUM(paid_amount)  As prete'))->first()->prete;;
+            ->get(DB::raw('SUM(GrandTotal) - SUM(paid_amount)  As prete'))->first()->prete;;
 
         $data['prete'] = number_format($data['prete'], 2, '.', ',');
 

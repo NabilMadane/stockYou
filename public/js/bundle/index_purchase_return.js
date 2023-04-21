@@ -914,18 +914,7 @@ var render = function render() {
           }
         }, [_c("i", {
           staticClass: "nav-icon i-File-TXT font-weight-bold mr-2"
-        }), _vm._v("\n                " + _vm._s(_vm.$t("DownloadPdf")) + "\n              ")]), _vm._v(" "), _c("b-dropdown-item", {
-          attrs: {
-            title: "Email"
-          },
-          on: {
-            click: function click($event) {
-              return _vm.Return_Purchase_Email(props.row, props.row.id);
-            }
-          }
-        }, [_c("i", {
-          staticClass: "nav-icon i-Envelope-2 font-weight-bold mr-2"
-        }), _vm._v("\n                " + _vm._s(_vm.$t("EmailReturn")) + "\n              ")]), _vm._v(" "), _vm.currentUserPermissions.includes("Purchase_Returns_delete") ? _c("b-dropdown-item", {
+        }), _vm._v("\n                " + _vm._s(_vm.$t("DownloadPdf")) + "\n              ")]), _vm._v(" "), _vm.currentUserPermissions.includes("Purchase_Returns_delete") ? _c("b-dropdown-item", {
           attrs: {
             title: "Delete"
           },

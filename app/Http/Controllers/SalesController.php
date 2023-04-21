@@ -1093,6 +1093,109 @@ class SalesController extends BaseController
         return $pdf->download('sale.pdf');
 
     }
+    public function Sale_PDF_ar(Request $request, $id)
+    {
+
+        $details = array();
+        $helpers = new helpers();
+        $sale_data = Sale::with('details.product.unitSale')
+            ->where('deleted_at', '=', null)
+            ->findOrFail($id);
+
+
+        $sale['client_name'] = $sale_data['client']->name;
+        $sale['client_phone'] = $sale_data['client']->phone;
+        $sale['client_adr'] = $sale_data['client']->adresse;
+        $sale['client_email'] = $sale_data['client']->email;
+        $sale['client_tax'] = $sale_data['client']->tax_number;
+        $sale['TaxNet'] = number_format($sale_data->TaxNet, 2, '.', '');
+        $sale['discount'] = number_format($sale_data->discount, 2, '.', '');
+        $sale['shipping'] = number_format($sale_data->shipping, 2, '.', '');
+        $sale['statut'] = $sale_data->statut;
+        $sale['Ref'] = $sale_data->Ref;
+        $sale['date'] = $sale_data->date;
+        $sale['GrandTotal'] = number_format($sale_data->GrandTotal, 2, '.', '');
+        $sale['paid_amount'] = number_format($sale_data->paid_amount, 2, '.', '');
+        $sale['due'] = number_format($sale['GrandTotal'] - $sale['paid_amount'], 2, '.', '');
+        $sale['payment_status'] = $sale_data->payment_statut;
+
+        $detail_id = 0;
+        foreach ($sale_data['details'] as $detail) {
+
+            //check if detail has sale_unit_id Or Null
+            if($detail->sale_unit_id !== null){
+                $unit = Unit::where('id', $detail->sale_unit_id)->first();
+            }else{
+                $product_unit_sale_id = Product::with('unitSale')
+                    ->where('id', $detail->product_id)
+                    ->first();
+                $unit = Unit::where('id', $product_unit_sale_id['unitSale']->id)->first();
+            }
+
+            if ($detail->product_variant_id) {
+
+                $productsVariants = ProductVariant::where('product_id', $detail->product_id)
+                    ->where('id', $detail->product_variant_id)->first();
+
+                $data['code'] = $productsVariants->name . '-' . $detail['product']['code'];
+            } else {
+                $data['code'] = $detail['product']['code'];
+            }
+
+            $data['detail_id'] = $detail_id += 1;
+            $data['quantity'] = number_format($detail->quantity, 2, '.', '');
+            $data['total'] = number_format($detail->total, 2, '.', '');
+            $data['name'] = $detail['product']['name_ar'];
+            $data['unitSale'] = $unit->ShortName;
+            $data['price'] = number_format($detail->price, 2, '.', '');
+
+            if ($detail->discount_method == '2') {
+                $data['DiscountNet'] = number_format($detail->discount, 2, '.', '');
+            } else {
+                $data['DiscountNet'] = number_format($detail->price * $detail->discount / 100, 2, '.', '');
+            }
+
+            $tax_price = $detail->TaxNet * (($detail->price - $data['DiscountNet']) / 100);
+            $data['Unit_price'] = number_format($detail->price, 2, '.', '');
+            $data['discount'] = number_format($detail->discount, 2, '.', '');
+
+            if ($detail->tax_method == '1') {
+                $data['Net_price'] = $detail->price - $data['DiscountNet'];
+                $data['taxe'] = number_format($tax_price, 2, '.', '');
+            } else {
+                $data['Net_price'] = ($detail->price - $data['DiscountNet']) / (($detail->TaxNet / 100) + 1);
+                $data['taxe'] = number_format($detail->price - $data['Net_price'] - $data['DiscountNet'], 2, '.', '');
+            }
+
+            $data['is_imei'] = $detail['product']['is_imei'];
+            $data['imei_number'] = $detail->imei_number;
+
+            $details[] = $data;
+        }
+        $settings = Setting::where('deleted_at', '=', null)->first();
+        $symbol = $helpers->Get_Currency_Code();
+
+        $Html = view('pdf.sale_pdf_ar', [
+            'symbol' => $symbol,
+            'setting' => $settings,
+            'sale' => $sale,
+            'details' => $details,
+        ])->render();
+        $arabic = new Arabic();
+        $p = $arabic->arIdentify($Html);
+
+        for ($i = count($p)-1; $i >= 0; $i-=2) {
+            $utf8ar = $arabic->utf8Glyphs(substr($Html, $p[$i-1], $p[$i] - $p[$i-1]));
+            $Html = substr_replace($Html, $utf8ar, $p[$i-1], $p[$i] - $p[$i-1]);
+        }
+        ini_set('max_execution_time', 300);
+        ini_set("memory_limit","512M");
+
+        $pdf = PDF::loadHTML($Html);
+
+        return $pdf->download('sale.pdf');
+
+    }
 
     //----------------Show Form Create Sale ---------------\\
 

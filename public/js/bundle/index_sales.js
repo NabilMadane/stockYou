@@ -625,6 +625,34 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         }, 500);
       });
     },
+    Invoice_PDF_Ar: function Invoice_PDF_Ar(sale, id) {
+      // Start the progress bar.
+      nprogress__WEBPACK_IMPORTED_MODULE_0___default().start();
+      nprogress__WEBPACK_IMPORTED_MODULE_0___default().set(0.1);
+      axios.get("sale_pdf_ar/" + id, {
+        responseType: "blob",
+        // important
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(function (response) {
+        var url = window.URL.createObjectURL(new Blob([response.data]));
+        var link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "Sale-" + sale.Ref + ".pdf");
+        document.body.appendChild(link);
+        link.click();
+        // Complete the animation of the  progress bar.
+        setTimeout(function () {
+          return nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
+        }, 500);
+      })["catch"](function () {
+        // Complete the animation of the  progress bar.
+        setTimeout(function () {
+          return nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
+        }, 500);
+      });
+    },
     //------------------------ Payments Sale PDF ------------------------------\\
     Payment_Sale_PDF: function Payment_Sale_PDF(payment, id) {
       // Start the progress bar.
@@ -1411,16 +1439,16 @@ var render = function render() {
           staticClass: "nav-icon i-File-TXT font-weight-bold mr-2"
         }), _vm._v("\n                " + _vm._s(_vm.$t("DownloadPdf")) + "\n              ")]), _vm._v(" "), _c("b-dropdown-item", {
           attrs: {
-            title: "Email"
+            title: "PDF"
           },
           on: {
             click: function click($event) {
-              return _vm.Sale_Email(props.row, props.row.id);
+              return _vm.Invoice_PDF_Ar(props.row, props.row.id);
             }
           }
         }, [_c("i", {
-          staticClass: "nav-icon i-Envelope-2 font-weight-bold mr-2"
-        }), _vm._v("\n                " + _vm._s(_vm.$t("EmailSale")) + "\n              ")]), _vm._v(" "), _vm.currentUserPermissions.includes("Sales_delete") ? _c("b-dropdown-item", {
+          staticClass: "nav-icon i-File-TXT font-weight-bold mr-2"
+        }), _vm._v("\n                " + _vm._s(_vm.$t("DownloadPdfar")) + "\n              ")]), _vm._v(" "), _vm.currentUserPermissions.includes("Sales_delete") ? _c("b-dropdown-item", {
           attrs: {
             title: "Delete"
           },

@@ -15,9 +15,9 @@
         @on-search="onSearch"
         :search-options="{
         enabled: true,
-        placeholder: $t('Search_this_table'),  
+        placeholder: $t('Search_this_table'),
       }"
-        :select-options="{ 
+        :select-options="{
           enabled: true ,
           clearSelectionText: '',
         }"
@@ -109,10 +109,10 @@
                   {{$t('DownloadPdf')}}
                 </b-dropdown-item>
 
-                <b-dropdown-item title="Email" @click="QuoteEmail(props.row , props.row.id)">
+               <!-- <b-dropdown-item title="Email" @click="QuoteEmail(props.row , props.row.id)">
                   <i class="nav-icon i-Envelope-2 font-weight-bold mr-2"></i>
                   {{$t('QuoteEmail')}}
-                </b-dropdown-item>
+                </b-dropdown-item>-->
 
                 <b-dropdown-item
                   title="Delete"
@@ -282,7 +282,7 @@ export default {
     ...mapGetters(["currentUserPermissions", "currentUser"]),
     columns() {
       return [
-        
+
         {
           label: this.$t("date"),
           field: "date",
@@ -404,7 +404,7 @@ export default {
       this.Filter_client = "";
       this.Filter_status = "";
       this.Filter_Ref = "";
-      this.Filter_warehouse = ""; 
+      this.Filter_warehouse = "";
       this.Get_Quotations(this.serverParams.page);
     },
 
@@ -548,7 +548,7 @@ export default {
         });
     },
 
-   
+
 
     //-------------------------------------------- Delete Quotation -------------------------\\
     Remove_Quotation(id) {

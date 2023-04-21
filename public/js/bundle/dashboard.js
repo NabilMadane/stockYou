@@ -444,7 +444,7 @@ var render = function render() {
     staticClass: "loading_page spinner spinner-primary mr-3"
   }) : !_vm.loading && _vm.currentUserPermissions && _vm.currentUserPermissions.includes("dashboard") ? _c("div", [_c("b-row", [_c("b-col", {
     attrs: {
-      lg: "3",
+      lg: "4",
       md: "6",
       sm: "12"
     }
@@ -465,7 +465,49 @@ var render = function render() {
     staticClass: "text-primary text-24 line-height-1 mb-2"
   }, [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.report_today.today_sales ? _vm.report_today.today_sales : 0))])])])], 1)], 1), _vm._v(" "), _c("b-col", {
     attrs: {
-      lg: "3",
+      lg: "4",
+      md: "6",
+      sm: "12"
+    }
+  }, [_c("router-link", {
+    attrs: {
+      tag: "a",
+      to: "/app/sale_return/list"
+    }
+  }, [_c("b-card", {
+    staticClass: "card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center"
+  }, [_c("i", {
+    staticClass: "i-Right-4"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "content"
+  }, [_c("p", {
+    staticClass: "text-muted mt-2 mb-0"
+  }, [_vm._v(_vm._s(_vm.$t("SalesReturn")))]), _vm._v(" "), _c("p", {
+    staticClass: "text-primary text-24 line-height-1 mb-2"
+  }, [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.report_today.return_sales ? _vm.report_today.return_sales : 0))])])])], 1)], 1), _vm._v(" "), _c("b-col", {
+    attrs: {
+      lg: "4",
+      md: "6",
+      sm: "12"
+    }
+  }, [_c("router-link", {
+    attrs: {
+      tag: "a",
+      to: "/app/sales/list"
+    }
+  }, [_c("b-card", {
+    staticClass: "card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center"
+  }, [_c("i", {
+    staticClass: "i-Left-4"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "content"
+  }, [_c("p", {
+    staticClass: "text-muted mt-2 mb-0"
+  }, [_vm._v(_vm._s(_vm.$t("Loan")))]), _vm._v(" "), _c("p", {
+    staticClass: "text-primary text-24 line-height-1 mb-2"
+  }, [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.report_today.prete ? _vm.report_today.prete : 0))])])])], 1)], 1), _vm._v(" "), _c("b-col", {
+    attrs: {
+      lg: "4",
       md: "6",
       sm: "12"
     }
@@ -486,7 +528,28 @@ var render = function render() {
     staticClass: "text-primary text-24 line-height-1 mb-2"
   }, [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.report_today.today_purchases ? _vm.report_today.today_purchases : 0))])])])], 1)], 1), _vm._v(" "), _c("b-col", {
     attrs: {
-      lg: "3",
+      lg: "4",
+      md: "6",
+      sm: "12"
+    }
+  }, [_c("router-link", {
+    attrs: {
+      tag: "a",
+      to: "/app/purchase_return/list"
+    }
+  }, [_c("b-card", {
+    staticClass: "card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center"
+  }, [_c("i", {
+    staticClass: "i-Left-4"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "content"
+  }, [_c("p", {
+    staticClass: "text-muted mt-2 mb-0"
+  }, [_vm._v(_vm._s(_vm.$t("PurchasesReturn")))]), _vm._v(" "), _c("p", {
+    staticClass: "text-primary text-24 line-height-1 mb-2"
+  }, [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.report_today.return_purchases ? _vm.report_today.return_purchases : 0))])])])], 1)], 1), _vm._v(" "), _c("b-col", {
+    attrs: {
+      lg: "4",
       md: "6",
       sm: "12"
     }
@@ -505,28 +568,7 @@ var render = function render() {
     staticClass: "text-muted mt-2 mb-0"
   }, [_vm._v(_vm._s(_vm.$t("Stock")))]), _vm._v(" "), _c("p", {
     staticClass: "text-primary text-24 line-height-1 mb-2"
-  }, [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.report_today.stock ? _vm.report_today.stock : 0))])])])], 1)], 1), _vm._v(" "), _c("b-col", {
-    attrs: {
-      lg: "3",
-      md: "6",
-      sm: "12"
-    }
-  }, [_c("router-link", {
-    attrs: {
-      tag: "a",
-      to: "/app/sales/list"
-    }
-  }, [_c("b-card", {
-    staticClass: "card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center"
-  }, [_c("i", {
-    staticClass: "i-Left-4"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "content"
-  }, [_c("p", {
-    staticClass: "text-muted mt-2 mb-0"
-  }, [_vm._v(_vm._s(_vm.$t("Loan")))]), _vm._v(" "), _c("p", {
-    staticClass: "text-primary text-24 line-height-1 mb-2"
-  }, [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.report_today.prete ? _vm.report_today.prete : 0))])])])], 1)], 1)], 1), _vm._v(" "), _c("b-row", [_c("b-col", {
+  }, [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.report_today.stock ? _vm.report_today.stock : 0))])])])], 1)], 1)], 1), _vm._v(" "), _c("b-row", [_c("b-col", {
     attrs: {
       lg: "8",
       md: "12",

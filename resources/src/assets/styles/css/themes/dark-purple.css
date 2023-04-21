@@ -15472,7 +15472,7 @@ a.typo_link.text-gray-400:after {
   .layout-sidebar-large .main-header .logo {
     width: 120px; }
     .layout-sidebar-large .main-header .logo img {
-      width: 60px;
+        width: 100px;
       height: 60px;
       margin: 0 auto;
       display: block; }
@@ -16025,8 +16025,8 @@ a.typo_link.text-gray-400:after {
   .app-footer .footer-bottom {
     width: 100%; }
     .app-footer .footer-bottom .logo {
-      width: 3rem;
-      height: auto;
+        width: 100px;
+        height: 60px;
       margin: 4px; }
 
 .sidebar-left-secondary .childNav li.nav-item.open > a {
@@ -20474,8 +20474,8 @@ span.fa.fa-chevron-right:before {
   .app-footer .footer-bottom {
     width: 100%; }
     .app-footer .footer-bottom .logo {
-      width: 3rem;
-      height: auto;
+        width: 100px;
+        height: 60px;
       margin: 4px; }
 
 .custom-separator {

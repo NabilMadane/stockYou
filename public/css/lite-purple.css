@@ -28085,7 +28085,7 @@ a.typo_link.text-gray-900:after {
 }
 
 .layout-sidebar-large .main-header .logo img {
-  width: 60px;
+  width: 100px;
   height: 60px;
   margin: 0 auto;
   display: block;
@@ -28604,8 +28604,8 @@ a.typo_link.text-gray-900:after {
 }
 
 .app-footer .footer-bottom .logo {
-  width: 3rem;
-  height: auto;
+  width: 100px;
+  height: 60px;
   margin: 4px;
 }
 
@@ -36592,8 +36592,8 @@ th.line-numbers {
 }
 
 .app-footer .footer-bottom .logo {
-  width: 3rem;
-  height: auto;
+  width: 100px;
+  height: 60px;
   margin: 4px;
 }
 

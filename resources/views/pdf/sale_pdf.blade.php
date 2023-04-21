@@ -3,7 +3,7 @@
    <head>
        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
        <meta charset="utf-8">
-      <title>Sale _{{$sale['Ref']}}</title>
+      <title>Référence _{{$sale['Ref']}}</title>
        <style>
            @page {
                margin: 0cm 0cm;
@@ -90,8 +90,8 @@
            }
 
            #logo img {
-               height: 70px;
-               width: 70px;
+               height: 120px;
+               width: 150px;
            }
 
            #company {
@@ -337,12 +337,12 @@
          </div>
          <div id="company">
             <div><strong> Date : </strong>{{$sale['date']}}</div>
-            <div><strong> Number : </strong> {{$sale['Ref']}}</div>
+         {{--   <div><strong> Number : </strong> {{$sale['Ref']}}</div>--}}
             <div><strong> Status : </strong> {{$sale['statut']}}</div>
             <div><strong> Payment Status : </strong> {{$sale['payment_status']}}</div>
          </div>
          <div id="Title-heading">
-            Sale  : {{$sale['Ref']}}
+             Référence  : {{$sale['Ref']}}
          </div>
       </header>
       <main>
@@ -351,16 +351,16 @@
                <table class="table-sm">
                   <thead>
                      <tr>
-                        <th class="desc">Customer Info</th>
+                        <th class="desc">Informations client</th>
                      </tr>
                   </thead>
                   <tbody>
                      <tr>
                         <td>
-                           <div><strong>Full Name :</strong> {{$sale['client_name']}}</div>
-                           <div><strong>Phone :</strong> {{$sale['client_phone']}}</div>
-                           <div><strong>Email :</strong>  {{$sale['client_email']}}</div>
-                           <div><strong>Address :</strong>   {{$sale['client_adr']}}</div>
+                           <div><strong>Nom :</strong> {{$sale['client_name']}}</div>
+                           <div><strong>Téléphone :</strong> {{$sale['client_phone']}}</div>
+                           <div><strong>E-mail :</strong>  {{$sale['client_email']}}</div>
+                           <div><strong>Adresse :</strong>   {{$sale['client_adr']}}</div>
                            @if($sale['client_tax'])<div><strong>Tax Number :</strong>  {{$sale['client_tax']}}</div>@endif
                         </td>
                      </tr>
@@ -371,16 +371,16 @@
                <table class="table-sm">
                   <thead>
                      <tr>
-                        <th class="desc">Company Info</th>
+                        <th class="desc">Information d'entreprise</th>
                      </tr>
                   </thead>
                   <tbody>
                      <tr>
                         <td>
-                           <div id="comp">{{$setting['CompanyName']}}</div>
-                           <div><strong>Phone :</strong>  {{$setting['CompanyPhone']}}</div>
-                           <div><strong>Email :</strong>  {{$setting['email']}}</div>
-                           <div><strong>Address :</strong>  {{$setting['CompanyAdress']}}</div>
+                           <div><strong>Nom d'entreprise :</strong><spacn id="comp">  {{$setting['CompanyName']}}</spacn></div>
+                           <div><strong>Téléphone :</strong>  {{$setting['CompanyPhone']}}</div>
+                           <div><strong>E-mail :</strong>  {{$setting['email']}}</div>
+                           <div><strong>Adresse :</strong>  {{$setting['CompanyAdress']}}</div>
                         </td>
                      </tr>
                   </tbody>
@@ -391,11 +391,11 @@
             <table  class="table-sm">
                <thead>
                   <tr>
-                     <th>PRODUCT</th>
-                     <th>UNIT PRICE</th>
-                     <th>QUANTITY</th>
-                     <th>DISCOUNT</th>
-                     <th>TAX</th>
+                     <th>PRODUIT</th>
+                     <th>PRIX UNITAIRE</th>
+                     <th>QUANTITÉ</th>
+                   {{--  <th>DISCOUNT</th>
+                     <th>TAX</th>--}}
                      <th>TOTAL</th>
                   </tr>
                </thead>
@@ -410,8 +410,8 @@
                      </td>
                      <td>{{$detail['price']}} </td>
                      <td>{{$detail['quantity']}}/{{$detail['unitSale']}}</td>
-                     <td>{{$detail['DiscountNet']}} </td>
-                     <td>{{$detail['taxe']}} </td>
+                   {{--  <td>{{$detail['DiscountNet']}} </td>
+                     <td>{{$detail['taxe']}} </td>--}}
                      <td>{{$detail['total']}} </td>
                   </tr>
                   @endforeach
@@ -420,7 +420,7 @@
          </div>
          <div id="total">
             <table>
-               <tr>
+             {{--  <tr>
                   <td>Order Tax</td>
                   <td>{{$sale['TaxNet']}} </td>
                </tr>
@@ -431,20 +431,20 @@
                <tr>
                   <td>Shipping</td>
                   <td>{{$sale['shipping']}} </td>
-               </tr>
+               </tr>--}}
                <tr>
                   <td>Total</td>
-                  <td>{{$symbol}} {{$sale['GrandTotal']}} </td>
+                  <td> {{$sale['GrandTotal']}} {{$symbol}}</td>
                </tr>
 
                <tr>
-                  <td>Paid Amount</td>
-                  <td>{{$symbol}} {{$sale['paid_amount']}} </td>
+                  <td>Montant payé</td>
+                  <td> {{$sale['paid_amount']}} {{$symbol}} </td>
                </tr>
 
                <tr>
                   <td>Due</td>
-                  <td>{{$symbol}} {{$sale['due']}} </td>
+                  <td> {{$sale['due']}} {{$symbol}} </td>
                </tr>
             </table>
          </div>

@@ -16,7 +16,7 @@
         placeholder: $t('Search_this_table'),
         enabled: true,
       }"
-        :select-options="{ 
+        :select-options="{
           enabled: true ,
           clearSelectionText: '',
         }"
@@ -86,7 +86,7 @@
                   </b-dropdown-item>
                 </b-navbar-nav>
 
-                 <b-dropdown-item 
+                 <b-dropdown-item
                   title="Edit"
                   v-if="currentUserPermissions.includes('Sales_edit') && props.row.sale_has_return == 'no'"
                   :to="'/app/sales/edit/'+props.row.id"
@@ -147,11 +147,15 @@
                   <i class="nav-icon i-File-TXT font-weight-bold mr-2"></i>
                   {{$t('DownloadPdf')}}
                 </b-dropdown-item>
+                     <b-dropdown-item title="PDF" @click="Invoice_PDF_Ar(props.row , props.row.id)">
+                  <i class="nav-icon i-File-TXT font-weight-bold mr-2"></i>
+                  {{$t('DownloadPdfar')}}
+                </b-dropdown-item>
 
-                <b-dropdown-item title="Email" @click="Sale_Email(props.row , props.row.id)">
+            <!--    <b-dropdown-item title="Email" @click="Sale_Email(props.row , props.row.id)">
                   <i class="nav-icon i-Envelope-2 font-weight-bold mr-2"></i>
                   {{$t('EmailSale')}}
-                </b-dropdown-item>
+                </b-dropdown-item>-->
 
                 <b-dropdown-item
                   title="Delete"
@@ -217,7 +221,7 @@
                 <span class="ul-btn__text ml-1">{{props.row.Ref}}</span>
               </router-link> <br>
               <small v-if="props.row.sale_has_return == 'yes'"><i class="text-15 text-danger i-Back"></i></small>
-              
+
             </div>
         </template>
       </vue-good-table>
@@ -533,7 +537,7 @@
               >{{parseFloat(payment.received_amount - payment.montant).toFixed(2)}}</p>
             </b-col>
 
-           
+
 
             <b-col md="12" v-if="payment.Reglement == 'credit card'">
               <form id="payment-form">
@@ -995,7 +999,7 @@ export default {
       a.document.write(divContents);
       a.document.write("</body></html>");
       a.document.close();
-      
+
       setTimeout(() => {
          a.print();
       }, 1000);
@@ -1053,7 +1057,7 @@ export default {
       this.Get_Sales(this.serverParams.page);
     },
 
-    
+
     onSearch(value) {
       this.search = value.searchTerm;
       this.Get_Sales(this.serverParams.page);
@@ -1071,7 +1075,7 @@ export default {
           this.$t("Warning")
         );
         this.payment.montant = 0;
-      } 
+      }
       else if (this.payment.montant > this.due) {
         this.makeToast(
           "warning",
@@ -1087,7 +1091,7 @@ export default {
     Verified_Received_Amount() {
       if (isNaN(this.payment.received_amount)) {
         this.payment.received_amount = 0;
-      } 
+      }
     },
 
 
@@ -1238,12 +1242,38 @@ export default {
           setTimeout(() => NProgress.done(), 500);
         });
     },
+      Invoice_PDF_Ar(sale, id) {
+          // Start the progress bar.
+          NProgress.start();
+          NProgress.set(0.1);
+          axios
+              .get("sale_pdf_ar/" + id, {
+                  responseType: "blob", // important
+                  headers: {
+                      "Content-Type": "application/json"
+                  }
+              })
+              .then(response => {
+                  const url = window.URL.createObjectURL(new Blob([response.data]));
+                  const link = document.createElement("a");
+                  link.href = url;
+                  link.setAttribute("download", "Sale-" + sale.Ref + ".pdf");
+                  document.body.appendChild(link);
+                  link.click();
+                  // Complete the animation of the  progress bar.
+                  setTimeout(() => NProgress.done(), 500);
+              })
+              .catch(() => {
+                  // Complete the animation of the  progress bar.
+                  setTimeout(() => NProgress.done(), 500);
+              });
+      },
     //------------------------ Payments Sale PDF ------------------------------\\
     Payment_Sale_PDF(payment, id) {
       // Start the progress bar.
       NProgress.start();
       NProgress.set(0.1);
-     
+
       axios
         .get("payment_sale_pdf/" + id, {
           responseType: "blob", // important
@@ -1742,7 +1772,7 @@ export default {
             })
             .catch(error => {
               NProgress.done();
-                
+
             });
     },
 

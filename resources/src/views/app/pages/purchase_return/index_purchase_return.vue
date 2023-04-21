@@ -17,7 +17,7 @@
           placeholder: $t('Search_this_table'),
           enabled: true,
         }"
-        :select-options="{ 
+        :select-options="{
           enabled: true ,
           clearSelectionText: '',
         }"
@@ -51,7 +51,7 @@
               >
               <i class="i-File-Excel"></i> EXCEL
           </vue-excel-xlsx>
-        
+
         </div>
 
         <template slot="table-row" slot-scope="props">
@@ -107,13 +107,13 @@
                   {{$t('DownloadPdf')}}
                 </b-dropdown-item>
 
-                <b-dropdown-item
+              <!--  <b-dropdown-item
                   title="Email"
                   @click="Return_Purchase_Email(props.row , props.row.id)"
                 >
                   <i class="nav-icon i-Envelope-2 font-weight-bold mr-2"></i>
                   {{$t('EmailReturn')}}
-                </b-dropdown-item>
+                </b-dropdown-item>-->
 
                 <b-dropdown-item
                   title="Delete"
@@ -352,7 +352,7 @@
       >
         <b-form @submit.prevent="Submit_Payment">
           <b-row>
-            
+
             <!-- date -->
             <b-col lg="4" md="12" sm="12">
               <validation-provider
@@ -747,7 +747,7 @@ export default {
           this.$t("Warning")
         );
         this.facture.montant = 0;
-      } 
+      }
       else if (this.facture.montant > this.due) {
         this.makeToast(
           "warning",
@@ -763,7 +763,7 @@ export default {
     Verified_Received_Amount() {
       if (isNaN(this.facture.received_amount)) {
         this.facture.received_amount = 0;
-      } 
+      }
     },
 
 
@@ -812,7 +812,7 @@ export default {
       // Start the progress bar.
       NProgress.start();
       NProgress.set(0.1);
-     
+
       axios
         .get("return_purchase_pdf/" + id, {
           responseType: "blob", // important
@@ -844,7 +844,7 @@ export default {
       // Start the progress bar.
       NProgress.start();
       NProgress.set(0.1);
-     
+
        axios
         .get("payment_return_purchase_pdf/" + id, {
           responseType: "blob", // important

@@ -21,7 +21,7 @@
       <b-row>
         <!-- ICON BG -->
 
-        <b-col lg="3" md="6" sm="12">
+        <b-col lg="4" md="6" sm="12">
           <router-link tag="a" class to="/app/sales/list">
             <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
               <i class="i-Full-Cart"></i>
@@ -34,48 +34,20 @@
             </b-card>
           </router-link>
         </b-col>
-
-        <b-col lg="3" md="6" sm="12">
-          <router-link tag="a" class to="/app/purchases/list">
-            <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
-              <i class="i-Add-Cart"></i>
-              <div class="content">
-                <p class="text-muted mt-2 mb-0">{{$t('Purchases')}}</p>
-                <p
-                  class="text-primary text-24 line-height-1 mb-2"
-                >{{currentUser.currency}} {{report_today.today_purchases?report_today.today_purchases:0}}</p>
-              </div>
-            </b-card>
-          </router-link>
-        </b-col>
-
-<!--        <b-col lg="3" md="6" sm="12">
-          <router-link tag="a" class to="/app/sale_return/list">
-            <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
-              <i class="i-Right-4"></i>
-              <div class="content">
-                <p class="text-muted mt-2 mb-0">{{$t('SalesReturn')}}</p>
-                <p
-                  class="text-primary text-24 line-height-1 mb-2"
-                >{{currentUser.currency}} {{report_today.return_sales?report_today.return_sales:0}}</p>
-              </div>
-            </b-card>
-          </router-link>
-        </b-col>-->
-        <b-col lg="3" md="6" sm="12">
-          <router-link tag="a" class to="/app/products/list">
-            <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
-              <i class="i-Right-4"></i>
-              <div class="content">
-                <p class="text-muted mt-2 mb-0">{{$t('Stock')}}</p>
-                <p
-                  class="text-primary text-24 line-height-1 mb-2"
-                >{{currentUser.currency}} {{report_today.stock?report_today.stock:0}}</p>
-              </div>
-            </b-card>
-          </router-link>
-        </b-col>
-          <b-col lg="3" md="6" sm="12">
+          <b-col lg="4" md="6" sm="12">
+              <router-link tag="a" class to="/app/sale_return/list">
+                  <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
+                      <i class="i-Right-4"></i>
+                      <div class="content">
+                          <p class="text-muted mt-2 mb-0">{{$t('SalesReturn')}}</p>
+                          <p
+                              class="text-primary text-24 line-height-1 mb-2"
+                          >{{currentUser.currency}} {{report_today.return_sales?report_today.return_sales:0}}</p>
+                      </div>
+                  </b-card>
+              </router-link>
+          </b-col>
+          <b-col lg="4" md="6" sm="12">
               <router-link tag="a" class to="/app/sales/list">
                   <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
                       <i class="i-Left-4"></i>
@@ -88,19 +60,50 @@
                   </b-card>
               </router-link>
           </b-col>
-      <!--  <b-col lg="3" md="6" sm="12">
-          <router-link tag="a" class to="/app/purchase_return/list">
+
+        <b-col lg="4" md="6" sm="12">
+          <router-link tag="a" class to="/app/purchases/list">
             <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
-              <i class="i-Left-4"></i>
+              <i class="i-Add-Cart"></i>
               <div class="content">
-                <p class="text-muted mt-2 mb-0">{{$t('PurchasesReturn')}}</p>
+                <p class="text-muted mt-2 mb-0">{{$t('Purchases')}}</p>
                 <p
                   class="text-primary text-24 line-height-1 mb-2"
-                >{{currentUser.currency}} {{report_today.return_purchases?report_today.return_purchases:0}}</p>
+                >{{currentUser.currency}} {{report_today.today_purchases?report_today.today_purchases:0}}</p>
               </div>
             </b-card>
           </router-link>
-        </b-col>-->
+        </b-col>
+          <b-col lg="4" md="6" sm="12">
+              <router-link tag="a" class to="/app/purchase_return/list">
+                  <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
+                      <i class="i-Left-4"></i>
+                      <div class="content">
+                          <p class="text-muted mt-2 mb-0">{{$t('PurchasesReturn')}}</p>
+                          <p
+                              class="text-primary text-24 line-height-1 mb-2"
+                          >{{currentUser.currency}} {{report_today.return_purchases?report_today.return_purchases:0}}</p>
+                      </div>
+                  </b-card>
+              </router-link>
+          </b-col>
+
+
+        <b-col lg="4" md="6" sm="12">
+          <router-link tag="a" class to="/app/products/list">
+            <b-card class="card-icon-bg card-icon-bg-primary o-hidden mb-30 text-center">
+              <i class="i-Right-4"></i>
+              <div class="content">
+                <p class="text-muted mt-2 mb-0">{{$t('Stock')}}</p>
+                <p
+                  class="text-primary text-24 line-height-1 mb-2"
+                >{{currentUser.currency}} {{report_today.stock?report_today.stock:0}}</p>
+              </div>
+            </b-card>
+          </router-link>
+        </b-col>
+
+
 
       </b-row>
 

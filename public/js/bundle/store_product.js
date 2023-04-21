@@ -58,8 +58,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       variants: [],
       product: {
         name: "",
+        name_ar: "",
         code: "",
-        Type_barcode: "",
+        Type_barcode: "CODE128",
         cost: "",
         price: "",
         brand_id: "",
@@ -315,6 +316,48 @@ var render = function render() {
     }
   }, [_c("validation-provider", {
     attrs: {
+      name: "Name",
+      rules: {
+        required: true,
+        min: 3,
+        max: 55
+      }
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn(validationContext) {
+        return [_c("b-form-group", {
+          attrs: {
+            label: _vm.$t("Name_ar_product") + " " + "*"
+          }
+        }, [_c("b-form-input", {
+          attrs: {
+            state: _vm.getValidationState(validationContext),
+            "aria-describedby": "Name-feedback",
+            label: "Name",
+            placeholder: _vm.$t("Enter_Name_ar_product")
+          },
+          model: {
+            value: _vm.product.name_ar,
+            callback: function callback($$v) {
+              _vm.$set(_vm.product, "name_ar", $$v);
+            },
+            expression: "product.name_ar"
+          }
+        }), _vm._v(" "), _c("b-form-invalid-feedback", {
+          attrs: {
+            id: "Name-feedback"
+          }
+        }, [_vm._v(_vm._s(validationContext.errors[0]))])], 1)];
+      }
+    }], null, false, 4253427248)
+  })], 1), _vm._v(" "), _c("b-col", {
+    staticClass: "mb-2",
+    attrs: {
+      md: "6"
+    }
+  }, [_c("validation-provider", {
+    attrs: {
       name: "Code Product",
       rules: {
         required: true
@@ -444,64 +487,6 @@ var render = function render() {
     }
   }, [_c("validation-provider", {
     attrs: {
-      name: "Barcode Symbology",
-      rules: {
-        required: true
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(_ref3) {
-        var valid = _ref3.valid,
-          errors = _ref3.errors;
-        return _c("b-form-group", {
-          attrs: {
-            label: _vm.$t("BarcodeSymbology") + " " + "*"
-          }
-        }, [_c("v-select", {
-          "class": {
-            "is-invalid": !!errors.length
-          },
-          attrs: {
-            state: errors[0] ? false : valid ? true : null,
-            reduce: function reduce(label) {
-              return label.value;
-            },
-            placeholder: _vm.$t("Choose_Symbology"),
-            options: [{
-              label: "Code 128",
-              value: "CODE128"
-            }, {
-              label: "Code 39",
-              value: "CODE39"
-            }, {
-              label: "EAN8",
-              value: "EAN8"
-            }, {
-              label: "EAN13",
-              value: "EAN13"
-            }, {
-              label: "UPC",
-              value: "UPC"
-            }]
-          },
-          model: {
-            value: _vm.product.Type_barcode,
-            callback: function callback($$v) {
-              _vm.$set(_vm.product, "Type_barcode", $$v);
-            },
-            expression: "product.Type_barcode"
-          }
-        }), _vm._v(" "), _c("b-form-invalid-feedback", [_vm._v(_vm._s(errors[0]))])], 1);
-      }
-    }], null, false, 749236710)
-  })], 1), _vm._v(" "), _c("b-col", {
-    staticClass: "mb-2",
-    attrs: {
-      md: "6"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
       name: "Product Cost",
       rules: {
         required: true,
@@ -591,9 +576,9 @@ var render = function render() {
     },
     scopedSlots: _vm._u([{
       key: "default",
-      fn: function fn(_ref4) {
-        var valid = _ref4.valid,
-          errors = _ref4.errors;
+      fn: function fn(_ref3) {
+        var valid = _ref3.valid,
+          errors = _ref3.errors;
         return _c("b-form-group", {
           attrs: {
             label: _vm.$t("UnitProduct") + " " + "*"
@@ -644,9 +629,9 @@ var render = function render() {
     },
     scopedSlots: _vm._u([{
       key: "default",
-      fn: function fn(_ref5) {
-        var valid = _ref5.valid,
-          errors = _ref5.errors;
+      fn: function fn(_ref4) {
+        var valid = _ref4.valid,
+          errors = _ref4.errors;
         return _c("b-form-group", {
           attrs: {
             label: _vm.$t("UnitSale") + " " + "*"
@@ -692,9 +677,9 @@ var render = function render() {
     },
     scopedSlots: _vm._u([{
       key: "default",
-      fn: function fn(_ref6) {
-        var valid = _ref6.valid,
-          errors = _ref6.errors;
+      fn: function fn(_ref5) {
+        var valid = _ref5.valid,
+          errors = _ref5.errors;
         return _c("b-form-group", {
           attrs: {
             label: _vm.$t("UnitPurchase") + " " + "*"
@@ -769,117 +754,6 @@ var render = function render() {
   })], 1), _vm._v(" "), _c("b-col", {
     staticClass: "mb-2",
     attrs: {
-      md: "6"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
-      name: "Order Tax",
-      rules: {
-        regex: /^\d*\.?\d*$/
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(validationContext) {
-        return [_c("b-form-group", {
-          attrs: {
-            label: _vm.$t("OrderTax")
-          }
-        }, [_c("div", {
-          staticClass: "input-group"
-        }, [_c("input", {
-          directives: [{
-            name: "model",
-            rawName: "v-model.number",
-            value: _vm.product.TaxNet,
-            expression: "product.TaxNet",
-            modifiers: {
-              number: true
-            }
-          }],
-          staticClass: "form-control",
-          attrs: {
-            state: _vm.getValidationState(validationContext),
-            "aria-describedby": "OrderTax-feedback",
-            type: "text"
-          },
-          domProps: {
-            value: _vm.product.TaxNet
-          },
-          on: {
-            input: function input($event) {
-              if ($event.target.composing) return;
-              _vm.$set(_vm.product, "TaxNet", _vm._n($event.target.value));
-            },
-            blur: function blur($event) {
-              return _vm.$forceUpdate();
-            }
-          }
-        }), _vm._v(" "), _c("div", {
-          staticClass: "input-group-append"
-        }, [_c("span", {
-          staticClass: "input-group-text"
-        }, [_vm._v("%")])])]), _vm._v(" "), _c("b-form-invalid-feedback", {
-          attrs: {
-            id: "OrderTax-feedback"
-          }
-        }, [_vm._v(_vm._s(validationContext.errors[0]))])], 1)];
-      }
-    }], null, false, 1338089657)
-  })], 1), _vm._v(" "), _c("b-col", {
-    staticClass: "mb-2",
-    attrs: {
-      lg: "6",
-      md: "6",
-      sm: "12"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
-      name: "Tax Method",
-      rules: {
-        required: true
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(_ref7) {
-        var valid = _ref7.valid,
-          errors = _ref7.errors;
-        return _c("b-form-group", {
-          attrs: {
-            label: _vm.$t("TaxMethod") + " " + "*"
-          }
-        }, [_c("v-select", {
-          "class": {
-            "is-invalid": !!errors.length
-          },
-          attrs: {
-            state: errors[0] ? false : valid ? true : null,
-            reduce: function reduce(label) {
-              return label.value;
-            },
-            placeholder: _vm.$t("Choose_Method"),
-            options: [{
-              label: "Exclusive",
-              value: "1"
-            }, {
-              label: "Inclusive",
-              value: "2"
-            }]
-          },
-          model: {
-            value: _vm.product.tax_method,
-            callback: function callback($$v) {
-              _vm.$set(_vm.product, "tax_method", $$v);
-            },
-            expression: "product.tax_method"
-          }
-        }), _vm._v(" "), _c("b-form-invalid-feedback", [_vm._v(_vm._s(errors[0]))])], 1);
-      }
-    }], null, false, 1240149397)
-  })], 1), _vm._v(" "), _c("b-col", {
-    staticClass: "mb-2",
-    attrs: {
       md: "12"
     }
   }, [_c("b-form-group", {
@@ -907,194 +781,7 @@ var render = function render() {
         _vm.$set(_vm.product, "note", $event.target.value);
       }
     }
-  })])], 1), _vm._v(" "), _c("b-col", {
-    attrs: {
-      md: "12 mb-2"
-    }
-  }, [_c("ValidationProvider", {
-    attrs: {
-      rules: "",
-      vid: "product"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(x) {
-        return [_c("div", {
-          staticClass: "form-check"
-        }, [_c("label", {
-          staticClass: "checkbox checkbox-outline-primary"
-        }, [_c("input", {
-          directives: [{
-            name: "model",
-            rawName: "v-model",
-            value: _vm.product.is_variant,
-            expression: "product.is_variant"
-          }],
-          attrs: {
-            type: "checkbox"
-          },
-          domProps: {
-            checked: Array.isArray(_vm.product.is_variant) ? _vm._i(_vm.product.is_variant, null) > -1 : _vm.product.is_variant
-          },
-          on: {
-            change: function change($event) {
-              var $$a = _vm.product.is_variant,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false;
-              if (Array.isArray($$a)) {
-                var $$v = null,
-                  $$i = _vm._i($$a, $$v);
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(_vm.product, "is_variant", $$a.concat([$$v]));
-                } else {
-                  $$i > -1 && _vm.$set(_vm.product, "is_variant", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-                }
-              } else {
-                _vm.$set(_vm.product, "is_variant", $$c);
-              }
-            }
-          }
-        }), _vm._v(" "), _c("h5", [_vm._v(_vm._s(_vm.$t("ProductHasMultiVariants")))]), _vm._v(" "), _c("span", {
-          staticClass: "checkmark"
-        })])])];
-      }
-    }], null, false, 831196248)
-  })], 1), _vm._v(" "), _c("b-col", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.product.is_variant,
-      expression: "product.is_variant"
-    }],
-    attrs: {
-      md: "12 mb-5"
-    }
-  }, [_c("vue-tags-input", {
-    staticClass: "tag-custom text-15",
-    attrs: {
-      placeholder: "+ add",
-      tags: _vm.variants
-    },
-    on: {
-      "adding-duplicate": function addingDuplicate($event) {
-        return _vm.showNotifDuplicate();
-      },
-      "tags-changed": function tagsChanged(newTags) {
-        return _vm.variants = newTags;
-      }
-    },
-    model: {
-      value: _vm.tag,
-      callback: function callback($$v) {
-        _vm.tag = $$v;
-      },
-      expression: "tag"
-    }
-  })], 1), _vm._v(" "), _c("b-col", {
-    attrs: {
-      md: "12 mb-2"
-    }
-  }, [_c("ValidationProvider", {
-    attrs: {
-      rules: "",
-      vid: "product"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(x) {
-        return [_c("div", {
-          staticClass: "form-check"
-        }, [_c("label", {
-          staticClass: "checkbox checkbox-outline-primary"
-        }, [_c("input", {
-          directives: [{
-            name: "model",
-            rawName: "v-model",
-            value: _vm.product.is_imei,
-            expression: "product.is_imei"
-          }],
-          attrs: {
-            type: "checkbox"
-          },
-          domProps: {
-            checked: Array.isArray(_vm.product.is_imei) ? _vm._i(_vm.product.is_imei, null) > -1 : _vm.product.is_imei
-          },
-          on: {
-            change: function change($event) {
-              var $$a = _vm.product.is_imei,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false;
-              if (Array.isArray($$a)) {
-                var $$v = null,
-                  $$i = _vm._i($$a, $$v);
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(_vm.product, "is_imei", $$a.concat([$$v]));
-                } else {
-                  $$i > -1 && _vm.$set(_vm.product, "is_imei", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-                }
-              } else {
-                _vm.$set(_vm.product, "is_imei", $$c);
-              }
-            }
-          }
-        }), _vm._v(" "), _c("h5", [_vm._v(_vm._s(_vm.$t("Product_Has_Imei_Serial_number")))]), _vm._v(" "), _c("span", {
-          staticClass: "checkmark"
-        })])])];
-      }
-    }], null, false, 1678388961)
-  })], 1), _vm._v(" "), _c("b-col", {
-    attrs: {
-      md: "12 mb-2"
-    }
-  }, [_c("ValidationProvider", {
-    attrs: {
-      rules: "",
-      vid: "product"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(x) {
-        return [_c("div", {
-          staticClass: "form-check"
-        }, [_c("label", {
-          staticClass: "checkbox checkbox-outline-primary"
-        }, [_c("input", {
-          directives: [{
-            name: "model",
-            rawName: "v-model",
-            value: _vm.product.not_selling,
-            expression: "product.not_selling"
-          }],
-          attrs: {
-            type: "checkbox"
-          },
-          domProps: {
-            checked: Array.isArray(_vm.product.not_selling) ? _vm._i(_vm.product.not_selling, null) > -1 : _vm.product.not_selling
-          },
-          on: {
-            change: function change($event) {
-              var $$a = _vm.product.not_selling,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false;
-              if (Array.isArray($$a)) {
-                var $$v = null,
-                  $$i = _vm._i($$a, $$v);
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(_vm.product, "not_selling", $$a.concat([$$v]));
-                } else {
-                  $$i > -1 && _vm.$set(_vm.product, "not_selling", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-                }
-              } else {
-                _vm.$set(_vm.product, "not_selling", $$c);
-              }
-            }
-          }
-        }), _vm._v(" "), _c("h5", [_vm._v(_vm._s(_vm.$t("This_Product_Not_For_Selling")))]), _vm._v(" "), _c("span", {
-          staticClass: "checkmark"
-        })])])];
-      }
-    }], null, false, 2487563839)
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c("b-col", {
+  })])], 1)], 1)], 1)], 1), _vm._v(" "), _c("b-col", {
     attrs: {
       md: "4"
     }
