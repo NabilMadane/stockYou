@@ -38004,8 +38004,8 @@ table {
 }
 
 .auth-logo img {
-  width: 100px;
-  height: 100px;
+  width: 90%;
+  height: 90px;
 }
 
 @media (min-width: 1024px) {

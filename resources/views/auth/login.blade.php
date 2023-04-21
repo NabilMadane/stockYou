@@ -32,7 +32,8 @@
         <login-component></login-component>
       </div>
 
-      <script src="/js/login.min.js?v=4.0.4"></script>
+     {{-- <script src="/js/login.min.js?v=4.0.4"></script>--}}
+      <script src="/js/login.min.js"></script>
   </body>
 </html>
 
