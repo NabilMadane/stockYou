@@ -90,8 +90,8 @@
            }
 
            #logo img {
-               height: 120px;
-               width: 150px;
+               height: 80px;
+               width: 180px;
            }
 
            #company {
@@ -332,7 +332,7 @@
       <header class="clearfix">
          <div id="logo">
         {{-- <img src="{{public_path('/images/'.$setting['logo'])}}">--}}
-         <img src="{{public_path('/images/'.$setting['logo'])}}">
+         <img src="{{public_path('/images/logo.png')}}">
          </div>
          <div id="company">
             <div><strong> Date : </strong>{{$sale['date']}}</div>
