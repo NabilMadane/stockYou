@@ -28,7 +28,7 @@
            }
 
            a {
-               color: #0087C3;
+               color: #1b47a9 ;
                text-decoration: none;
            }
 
@@ -79,7 +79,7 @@
                min-height: 90px;
                font-size: 85%;
                font-size: 22px;
-               color:#0087C3;
+               color:#1b47a9 ;
                font-weight: 900;
            }
 
@@ -95,8 +95,6 @@
            }
 
            #company {
-
-               float: right;
                float: right;
                padding-left: 6px;
                min-height: 90px;
@@ -136,7 +134,7 @@
            #invoice>table th {
                padding: 6px;
                border-bottom: 1px solid #FFFFFF;
-               background: #0087C3;
+               background: #1b47a9 ;
                color: #fff;
                font-size: 13px;
                font-weight: bold;
@@ -157,7 +155,7 @@
 
            #client>table th {
                padding: 6px;
-               background: #0087C3;
+               background: #1b47a9 ;
                color: #fff;
                font-size: 13px;
                font-weight: bold;
@@ -182,7 +180,7 @@
            }
 
            #invoice h1 {
-               color: #0087C3;
+               color: #1b47a9 ;
                font-size: 16px;
                line-height: 1em;
                font-weight: normal;
@@ -216,7 +214,7 @@
                text-align: left;
                border-bottom: 1px solid #FFFFFF;
                color: #fff;
-               background: #0087C3;
+               background: #1b47a9 ;
                font-size: 13px;
                font-weight: bold;
            }
@@ -304,7 +302,7 @@
 
            #notices {
                padding-left: 6px;
-               border-left: 6px solid #0087C3;
+               border-left: 6px solid #1b47a9 ;
            }
 
            #notices .notice {
@@ -333,13 +331,14 @@
    <body>
       <header class="clearfix">
          <div id="logo">
+        {{-- <img src="{{public_path('/images/'.$setting['logo'])}}">--}}
          <img src="{{public_path('/images/'.$setting['logo'])}}">
          </div>
          <div id="company">
             <div><strong> Date : </strong>{{$sale['date']}}</div>
          {{--   <div><strong> Number : </strong> {{$sale['Ref']}}</div>--}}
-            <div><strong> Status : </strong> {{$sale['statut']}}</div>
-            <div><strong> Payment Status : </strong> {{$sale['payment_status']}}</div>
+        {{--    <div><strong> Status : </strong> {{$sale['statut']}}</div>
+            <div><strong> Payment Status : </strong> {{$sale['payment_status']}}</div>--}}
          </div>
          <div id="Title-heading">
              Référence  : {{$sale['Ref']}}
@@ -377,7 +376,7 @@
                   <tbody>
                      <tr>
                         <td>
-                           <div><strong>Nom d'entreprise :</strong><spacn id="comp">  {{$setting['CompanyName']}}</spacn></div>
+                           <div><strong>Nom d'entreprise :</strong><span id="comp">  {{$setting['CompanyName']}}</span></div>
                            <div><strong>Téléphone :</strong>  {{$setting['CompanyPhone']}}</div>
                            <div><strong>E-mail :</strong>  {{$setting['email']}}</div>
                            <div><strong>Adresse :</strong>  {{$setting['CompanyAdress']}}</div>
@@ -443,7 +442,7 @@
                </tr>
 
                <tr>
-                  <td>Due</td>
+                  <td>Montant restant</td>
                   <td> {{$sale['due']}} {{$symbol}} </td>
                </tr>
             </table>

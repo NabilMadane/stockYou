@@ -27,7 +27,7 @@
            }
 
            a {
-               color: #0087C3;
+               color: #1b47a9 ;
                text-decoration: none;
            }
 
@@ -78,7 +78,7 @@
                min-height: 90px;
                font-size: 85%;
                font-size: 22px;
-               color:#0087C3;
+               color:#1b47a9 ;
                font-weight: 900;
            }
 
@@ -135,7 +135,7 @@
            #invoice>table th {
                padding: 6px;
                border-bottom: 1px solid #FFFFFF;
-               background: #0087C3;
+               background: #1b47a9 ;
                color: #fff;
                font-size: 13px;
                font-weight: bold;
@@ -156,7 +156,7 @@
 
            #client>table th {
                padding: 6px;
-               background: #0087C3;
+               background: #1b47a9 ;
                color: #fff;
                font-size: 13px;
                font-weight: bold;
@@ -181,7 +181,7 @@
            }
 
            #invoice h1 {
-               color: #0087C3;
+               color: #1b47a9 ;
                font-size: 16px;
                line-height: 1em;
                font-weight: normal;
@@ -215,7 +215,7 @@
                text-align: left;
                border-bottom: 1px solid #FFFFFF;
                color: #fff;
-               background: #0087C3;
+               background: #1b47a9 ;
                font-size: 13px;
                font-weight: bold;
            }
@@ -303,7 +303,7 @@
 
            #notices {
                padding-left: 6px;
-               border-left: 6px solid #0087C3;
+               border-left: 6px solid #1b47a9 ;
            }
 
            #notices .notice {
