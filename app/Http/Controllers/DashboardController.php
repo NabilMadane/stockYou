@@ -367,13 +367,12 @@ class DashboardController extends Controller
                 }else{
                     return $query->whereIn('warehouse_id', $array_warehouses_id);
                 }})
-            ->get(DB::raw('SUM(qte*price)  As sum'))->first()->sum;;
+            ->get(DB::raw('SUM(qte*cost)  As sum'))->first()->sum;
 
         $data['stock'] = number_format($data['stock'], 2, '.', ',');
 //---------------- product stock money
 
         $data['prete'] = Sale::where('deleted_at', '=', null)
-            ->where('payment_statut','partial')
             ->where(function ($query) use ($warehouse_id, $array_warehouses_id) {
                 if ($warehouse_id !== 0) {
                     return $query->where('warehouse_id', $warehouse_id);
