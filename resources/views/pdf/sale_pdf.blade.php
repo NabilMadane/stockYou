@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
    <head>
        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
        <meta charset="utf-8">
@@ -90,7 +90,6 @@
            }
 
            #logo img {
-               height: 80px;
                width: 180px;
            }
 
@@ -335,7 +334,7 @@
          <img src="{{public_path('/images/logo.png')}}">
          </div>
          <div id="company">
-            <div><strong> Date : </strong>{{$sale['date']}}</div>
+            <div><strong> Date : </strong>{{date('d-m-Y', strtotime($sale['date']))}}</div>
          {{--   <div><strong> Number : </strong> {{$sale['Ref']}}</div>--}}
         {{--    <div><strong> Status : </strong> {{$sale['statut']}}</div>
             <div><strong> Payment Status : </strong> {{$sale['payment_status']}}</div>--}}
@@ -356,11 +355,11 @@
                   <tbody>
                      <tr>
                         <td>
-                           <div><strong>Nom :</strong> {{$sale['client_name']}}</div>
-                           <div><strong>Téléphone :</strong> {{$sale['client_phone']}}</div>
-                           <div><strong>E-mail :</strong>  {{$sale['client_email']}}</div>
-                           <div><strong>Adresse :</strong>   {{$sale['client_adr']}}</div>
-                           @if($sale['client_tax'])<div><strong>Tax Number :</strong>  {{$sale['client_tax']}}</div>@endif
+                            @if($sale['client_name'])<div><strong>Nom :</strong> {{$sale['client_name']}}</div>@endif
+                            @if($sale['client_phone'])<div><strong>Téléphone :</strong> {{$sale['client_phone']}}</div>@endif
+                            @if($sale['client_email'])<div><strong>E-mail :</strong> {{$sale['client_email']}}</div>@endif
+                            @if($sale['client_adr'])<div><strong>Adresse :</strong> {{$sale['client_adr']}}</div>@endif
+                           @if($sale['client_tax'])<div><strong>Tax Number :</strong> {{$sale['client_tax']}}</div>@endif
                         </td>
                      </tr>
                   </tbody>
@@ -376,10 +375,10 @@
                   <tbody>
                      <tr>
                         <td>
-                           <div><strong>Nom d'entreprise :</strong><span id="comp">  {{$setting['CompanyName']}}</span></div>
-                           <div><strong>Téléphone :</strong>  {{$setting['CompanyPhone']}}</div>
-                           <div><strong>E-mail :</strong>  {{$setting['email']}}</div>
-                           <div><strong>Adresse :</strong>  {{$setting['CompanyAdress']}}</div>
+                            @if($setting['client_name'])<div><strong>Nom d'entreprise :</strong><span id="comp">  {{$setting['CompanyName']}}</span></div>@endif
+                            @if($setting['CompanyPhone'])<div><strong>Téléphone :</strong>  {{$setting['CompanyPhone']}}</div>@endif
+                            @if($setting['email'])<div><strong>E-mail :</strong>  {{$setting['email']}}</div>@endif
+                            @if($setting['CompanyAdress'])<div><strong>Adresse :</strong>  {{$setting['CompanyAdress']}}</div>@endif
                         </td>
                      </tr>
                   </tbody>
@@ -402,7 +401,7 @@
                   @foreach ($details as $detail)
                   <tr>
                      <td>
-                        <span>{{$detail['code']}} ({{$detail['name']}})</span>
+                        <span>{{$detail['name']}}</span>
                            @if($detail['is_imei'] && $detail['imei_number'] !==null)
                               <p>IMEI/SN : {{$detail['imei_number']}}</p>
                            @endif

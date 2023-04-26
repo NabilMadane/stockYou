@@ -89,13 +89,10 @@
            }
 
            #logo img {
-               height: 70px;
-               width: 70px;
+               width: 180px;
            }
 
            #company {
-
-               float: right;
                float: right;
                padding-left: 6px;
                min-height: 90px;
@@ -330,10 +327,11 @@
    </head>
 
    <body>
-      <header class="clearfix">
-         <div id="logo">
-         <img src="{{public_path('/images/'.$setting['logo'])}}">
-         </div>
+   <header class="clearfix">
+       <div id="logo">
+           {{-- <img  src="{{public_path('/images/'.$setting['logo'])}}">--}}
+           <img src="{{public_path('/images/logo.png')}}">
+       </div>
          <div id="company">
             <div><strong> Date: </strong>{{$payment['date']}}</div>
             <div><strong> Number: </strong> {{$payment['Ref']}}</div>

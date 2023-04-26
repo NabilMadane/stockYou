@@ -311,8 +311,9 @@ export default {
     DetailQuote: 'Détail Devis',
     EditQuote: 'Modifier Devis',
     CreateSale: 'Créer une vente',
-    DownloadPdf: 'Télécharger le PDF',
-    DownloadPdfar: 'Télécharger le PDF en arabe',
+    DownloadPdf_: 'Télécharger la facture',
+    DownloadPdfar: 'Télécharger la facture en arabe',
+
     QuoteEmail: 'Envoyé Devis sur Email',
     DeleteQuote: 'Supprimé Devis',
     AddQuote: 'Ajouter Devis',

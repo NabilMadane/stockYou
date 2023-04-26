@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8">
@@ -77,6 +77,7 @@
             margin-top: 40px;
             padding-left: 6px;
             min-height: 90px;
+            font-size: 85%;
             font-size: 22px;
             color:#1b47a9 ;
             font-weight: 900;
@@ -89,7 +90,6 @@
         }
 
         #logo img {
-            height: 80px;
             width: 180px;
         }
 
@@ -213,7 +213,7 @@
             text-align: left;
             border-bottom: 1px solid #FFFFFF;
             color: #fff;
-            background: #1b47a9;
+            background: #1b47a9 ;
             font-size: 13px;
             font-weight: bold;
         }
@@ -330,15 +330,15 @@
 <body>
 <header class="clearfix">
     <div id="logo">
-        <div id="logo">
-            {{-- <img src="{{public_path('/images/'.$setting['logo'])}}">--}}
-            <img src="{{public_path('/images/logo.png')}}">
+        {{-- <img src="{{public_path('/images/'.$setting['logo'])}}">--}}
+        <img src="{{public_path('/images/logo.png')}}">
     </div>
     <div id="company">
-        <div>{{$sale['date']}} <strong> التاريخ : </strong></div>
+
+        <div>{{date('d-m-Y', strtotime($sale['date']))}}<strong> التاريخ : </strong></div>
         {{--   <div><strong> Number : </strong> {{$sale['Ref']}}</div>--}}
-      {{--  <div><strong> Status : </strong> {{$sale['statut']}}</div>--}}
-       {{-- <div><strong> Payment Status : </strong> {{$sale['payment_status']}}</div>--}}
+        {{--    <div><strong> Status : </strong> {{$sale['statut']}}</div>
+            <div><strong> Payment Status : </strong> {{$sale['payment_status']}}</div>--}}
     </div>
     <div id="Title-heading">{{$sale['Ref']}}  <strong> الرقم : </strong></div>
 </header>
@@ -354,10 +354,10 @@
                 <tbody>
                 <tr>
                     <td style="text-align: right">
-                        <div>{{$sale['client_name']}} <strong>الاسم :</strong></div>
-                        <div>{{$sale['client_phone']}} <strong>الهاتف :</strong></div>
-                        <div>{{$sale['client_email']}} <strong>البريد الإلكتروني :</strong></div>
-                        <div>{{$sale['client_adr']}} <strong>العنوان :</strong></div>
+                        @if($sale['client_name'])<div>{{$sale['client_name']}} <strong>الاسم :</strong></div>@endif
+                        @if($sale['client_phone'])<div>{{$sale['client_phone']}} <strong>الهاتف :</strong></div>@endif
+                        @if($sale['client_email'])<div>{{$sale['client_email']}} <strong>البريد الإلكتروني :</strong></div>@endif
+                        @if($sale['client_adr'])<div>{{$sale['client_adr']}} <strong>العنوان :</strong></div>@endif
                         @if($sale['client_tax'])<div><strong>Tax Number :</strong>  {{$sale['client_tax']}}</div>@endif
                     </td>
                 </tr>
@@ -374,10 +374,10 @@
                 <tbody>
                 <tr>
                     <td style="text-align: right">
-                        <div><span id="comp">  {{$setting['CompanyName']}}</span> <strong>اسم الشركة :</strong></div>
-                        <div>{{$setting['CompanyPhone']}} <strong>الهاتف :</strong></div>
-                        <div>{{$setting['email']}} <strong>البريد الإلكتروني :</strong></div>
-                        <div>{{$setting['CompanyAdress']}} <strong>العنوان :</strong></div>
+                        @if($setting['CompanyName'])<div><span id="comp">{{$setting['CompanyName']}}</span><strong>اسم الشركة :</strong></div>@endif
+                        @if($setting['CompanyPhone'])<div>{{$setting['CompanyPhone']}} <strong>الهاتف :</strong></div>@endif
+                        @if($setting['email'])<div>{{$setting['email']}} <strong>البريد الإلكتروني :</strong></div>@endif
+                        @if($setting['CompanyAdress'])<div>{{$setting['CompanyAdress']}} <strong>العنوان :</strong></div>@endif
                     </td>
                 </tr>
                 </tbody>
@@ -392,11 +392,8 @@
                 <th>الكمية</th>
                 <th>سعر الوحدة</th>
                 <th style="text-align: right">المنتج</th>
-
-
                 {{--  <th>DISCOUNT</th>
                   <th>TAX</th>--}}
-
             </tr>
             </thead>
             <tbody>
@@ -406,7 +403,7 @@
                     <td>{{$detail['quantity']}}/{{$detail['unitSale']}}</td>
                     <td>{{$detail['price']}} </td>
                     <td style="text-align: right">
-                        <span>{{$detail['code']}} ({{$detail['name']}})</span>
+                        <span>{{$detail['name']}}</span>
                         @if($detail['is_imei'] && $detail['imei_number'] !==null)
                             <p>IMEI/SN : {{$detail['imei_number']}}</p>
                         @endif
