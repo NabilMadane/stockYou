@@ -40,12 +40,12 @@
       </div>
 
        <div slot="table-actions" class="mt-2 mb-3">
-        
+
           <b-button @click="stock_report_PDF()" size="sm" variant="outline-success ripple m-1">
             <i class="i-File-Copy"></i> PDF
           </b-button>
            <vue-excel-xlsx
-              class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
               :data="reports"
               :columns="columns"
               :file-name="'stock_report'"
@@ -122,7 +122,7 @@ export default {
           thClass: "text-left",
           sortable: false
         },
-      
+
         {
           label: this.$t("Price"),
           field: "price",

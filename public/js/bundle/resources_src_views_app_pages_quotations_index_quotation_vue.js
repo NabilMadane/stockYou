@@ -577,7 +577,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "i-File-Copy"
   }), _vm._v(" PDF\n        ")]), _vm._v(" "), _c("vue-excel-xlsx", {
-    staticClass: "btn btn-sm btn-outline-danger ripple m-1",
+    staticClass: "btn btn-sm btn-outline-success ripple m-1",
     attrs: {
       data: _vm.quotations,
       columns: _vm.columns,

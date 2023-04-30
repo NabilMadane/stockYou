@@ -872,7 +872,7 @@ var render = function render() {
   }, [_c("b-button", {
     attrs: {
       size: "sm",
-      variant: "outline-success ripple m-1"
+      variant: "outline-danger ripple m-1"
     },
     on: {
       click: function click($event) {
@@ -881,8 +881,8 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "i-File-Copy"
-  }), _vm._v(" PDF\n              ")]), _vm._v(" "), _c("vue-excel-xlsx", {
-    staticClass: "btn btn-sm btn-outline-danger ripple m-1",
+  }), _vm._v(" PDF\n        ")]), _vm._v(" "), _c("vue-excel-xlsx", {
+    staticClass: "btn btn-sm btn-outline-success ripple m-1",
     attrs: {
       data: _vm.sales,
       columns: _vm.columns_sales,
@@ -950,7 +950,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "i-File-Copy"
   }), _vm._v(" PDF\n              ")]), _vm._v(" "), _c("vue-excel-xlsx", {
-    staticClass: "btn btn-sm btn-outline-danger ripple m-1",
+    staticClass: "btn btn-sm btn-outline-success ripple m-1",
     attrs: {
       data: _vm.quotations,
       columns: _vm.columns_quotations,
@@ -1008,7 +1008,7 @@ var render = function render() {
   }, [_c("b-button", {
     attrs: {
       size: "sm",
-      variant: "outline-success ripple m-1"
+      variant: "outline-danger ripple m-1"
     },
     on: {
       click: function click($event) {
@@ -1018,7 +1018,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "i-File-Copy"
   }), _vm._v(" PDF\n              ")]), _vm._v(" "), _c("vue-excel-xlsx", {
-    staticClass: "btn btn-sm btn-outline-danger ripple m-1",
+    staticClass: "btn btn-sm btn-outline-success ripple m-1",
     attrs: {
       data: _vm.purchases,
       columns: _vm.columns_purchases,
@@ -1086,7 +1086,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "i-File-Copy"
   }), _vm._v(" PDF\n              ")]), _vm._v(" "), _c("vue-excel-xlsx", {
-    staticClass: "btn btn-sm btn-outline-danger ripple m-1",
+    staticClass: "btn btn-sm btn-outline-success ripple m-1",
     attrs: {
       data: _vm.sales_return,
       columns: _vm.columns_sales_return,
@@ -1154,7 +1154,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "i-File-Copy"
   }), _vm._v(" PDF\n              ")]), _vm._v(" "), _c("vue-excel-xlsx", {
-    staticClass: "btn btn-sm btn-outline-danger ripple m-1",
+    staticClass: "btn btn-sm btn-outline-success ripple m-1",
     attrs: {
       data: _vm.purchases_return,
       columns: _vm.columns_purchase_return,

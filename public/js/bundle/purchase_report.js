@@ -75,9 +75,9 @@ __webpack_require__.r(__webpack_exports__);
         weekLabel: "W",
         customRangeLabel: "Custom Range",
         daysOfWeek: moment__WEBPACK_IMPORTED_MODULE_5___default().weekdaysMin(),
-        //array of days - see moment documenations for details 
+        //array of days - see moment documenations for details
         monthNames: moment__WEBPACK_IMPORTED_MODULE_5___default().monthsShort(),
-        //array of month names - see moment documenations for details 
+        //array of month names - see moment documenations for details
         firstDay: 1 //ISO first day of week - see moment documenations for details
       }
     };
@@ -446,7 +446,7 @@ var render = function render() {
   }), _vm._v("\n          " + _vm._s(_vm.$t("Filter")) + "\n        ")]), _vm._v(" "), _c("b-button", {
     attrs: {
       size: "sm",
-      variant: "outline-success ripple m-1"
+      variant: "outline-danger ripple m-1"
     },
     on: {
       click: function click($event) {
@@ -456,7 +456,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "i-File-Copy"
   }), _vm._v(" PDF\n        ")]), _vm._v(" "), _c("vue-excel-xlsx", {
-    staticClass: "btn btn-sm btn-outline-danger ripple m-1",
+    staticClass: "btn btn-sm btn-outline-success ripple m-1",
     attrs: {
       data: _vm.purchases,
       columns: _vm.columns,

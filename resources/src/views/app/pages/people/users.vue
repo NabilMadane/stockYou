@@ -14,7 +14,7 @@
         @on-search="onSearch"
         :search-options="{
         enabled: true,
-        placeholder: $t('Search_this_table'),  
+        placeholder: $t('Search_this_table'),
       }"
         :pagination-options="{
         enabled: true,
@@ -33,7 +33,7 @@
             <i class="i-File-Copy"></i> PDF
           </b-button>
            <vue-excel-xlsx
-              class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
               :data="users"
               :columns="columns"
               :file-name="'users'"
@@ -327,7 +327,7 @@
 
             <b-col md="8" sm="8">
               <label class="checkbox checkbox-primary mb-3"><input type="checkbox" v-model="user.is_all_warehouses"><h5>{{$t('All_Warehouses')}} <i v-b-tooltip.hover.bottom title="If 'All Warehouses' Selected , User Can access all data for the selected Warehouses" class="text-info font-weight-bold i-Speach-BubbleAsking"></i></h5><span class="checkmark"></span></label>
-               
+
                <b-form-group class="mt-2" :label="$t('Some_warehouses')">
                   <v-select
                     multiple
@@ -696,7 +696,7 @@ export default {
             });
     },
 
-        
+
     //------------------------------ Event Upload Avatar -------------------------------\\
     async onFileSelected(e) {
       const { valid } = await this.$refs.Avatar.validate(e);

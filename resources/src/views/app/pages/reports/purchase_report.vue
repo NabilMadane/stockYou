@@ -5,16 +5,16 @@
     <div v-if="isLoading" class="loading_page spinner spinner-primary mr-3"></div>
 
      <b-col md="12" class="text-center" v-if="!isLoading">
-        <date-range-picker 
-          v-model="dateRange" 
-          :startDate="startDate" 
-          :endDate="endDate" 
+        <date-range-picker
+          v-model="dateRange"
+          :startDate="startDate"
+          :endDate="endDate"
            @update="Submit_filter_dateRange"
-          :locale-data="locale" > 
+          :locale-data="locale" >
 
           <template v-slot:input="picker" style="min-width: 350px;">
               {{ picker.startDate.toJSON().slice(0, 10)}} - {{ picker.endDate.toJSON().slice(0, 10)}}
-          </template>        
+          </template>
         </date-range-picker>
       </b-col>
 
@@ -49,11 +49,11 @@
             <i class="i-Filter-2"></i>
             {{ $t("Filter") }}
           </b-button>
-          <b-button @click="Purchase_PDF()" size="sm" variant="outline-success ripple m-1">
+          <b-button @click="Purchase_PDF()" size="sm" variant="outline-danger ripple m-1">
             <i class="i-File-Copy"></i> PDF
           </b-button>
           <vue-excel-xlsx
-              class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
               :data="purchases"
               :columns="columns"
               :file-name="'purchases_report'"
@@ -212,27 +212,27 @@ components: { DateRangePicker },
       warehouses: [],
       rows: [{
           statut: 'Total',
-         
+
           children: [
-             
+
           ],
       },],
       today_mode: true,
-      startDate: "", 
-      endDate: "", 
-      dateRange: { 
-       startDate: "", 
-       endDate: "" 
-      }, 
-      locale:{ 
+      startDate: "",
+      endDate: "",
+      dateRange: {
+       startDate: "",
+       endDate: ""
+      },
+      locale:{
           //separator between the two ranges apply
-          Label: "Apply", 
-          cancelLabel: "Cancel", 
-          weekLabel: "W", 
-          customRangeLabel: "Custom Range", 
-          daysOfWeek: moment.weekdaysMin(), 
-          //array of days - see moment documenations for details 
-          monthNames: moment.monthsShort(), //array of month names - see moment documenations for details 
+          Label: "Apply",
+          cancelLabel: "Cancel",
+          weekLabel: "W",
+          customRangeLabel: "Custom Range",
+          daysOfWeek: moment.weekdaysMin(),
+          //array of days - see moment documenations for details
+          monthNames: moment.monthsShort(), //array of month names - see moment documenations for details
           firstDay: 1 //ISO first day of week - see moment documenations for details
         },
     };
@@ -310,7 +310,7 @@ components: { DateRangePicker },
   methods: {
 
     sumCount(rowObj) {
-     
+
     	let sum = 0;
       for (let i = 0; i < rowObj.children.length; i++) {
         sum += rowObj.children[i].GrandTotal;
@@ -318,7 +318,7 @@ components: { DateRangePicker },
       return sum;
     },
     sumCount2(rowObj) {
-     
+
     	let sum = 0;
       for (let i = 0; i < rowObj.children.length; i++) {
         sum += rowObj.children[i].paid_amount;
@@ -326,14 +326,14 @@ components: { DateRangePicker },
       return sum;
     },
     sumCount3(rowObj) {
-     
+
     	let sum = 0;
       for (let i = 0; i < rowObj.children.length; i++) {
         sum += rowObj.children[i].due;
       }
       return sum;
     },
-    
+
     //---- update Params Table
     updateParams(newProps) {
       this.serverParams = Object.assign({}, this.serverParams, newProps);
@@ -440,7 +440,7 @@ components: { DateRangePicker },
 
         self.dateRange.startDate = today.getFullYear();
         self.dateRange.endDate = new Date().toJSON().slice(0, 10);
-        
+
       }
     },
 

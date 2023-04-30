@@ -241,24 +241,6 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "i-Edit"
   }), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.$t("EditPurchase")))])]) : _vm._e(), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-info btn-icon ripple btn-sm",
-    on: {
-      click: function click($event) {
-        return _vm.purchase_Email();
-      }
-    }
-  }, [_c("i", {
-    staticClass: "i-Envelope-2"
-  }), _vm._v("\n          " + _vm._s(_vm.$t("Email")) + "\n        ")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-secondary btn-icon ripple btn-sm",
-    on: {
-      click: function click($event) {
-        return _vm.Purchase_SMS();
-      }
-    }
-  }, [_c("i", {
-    staticClass: "i-Speach-Bubble"
-  }), _vm._v("\n          SMS\n        ")]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary btn-icon ripple btn-sm",
     on: {
       click: function click($event) {
@@ -371,14 +353,6 @@ var render = function render() {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v(_vm._s(_vm.$t("Discount")))]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v(_vm._s(_vm.$t("Tax")))]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
   }, [_vm._v(_vm._s(_vm.$t("SubTotal")))])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.details, function (detail) {
     return _c("tr", [_c("td", [_c("span", [_vm._v(_vm._s(detail.code) + " (" + _vm._s(detail.name) + ")")]), _vm._v(" "), _c("p", {
       directives: [{
@@ -387,18 +361,12 @@ var render = function render() {
         value: detail.is_imei && detail.imei_number !== null,
         expression: "detail.is_imei && detail.imei_number !==null "
       }]
-    }, [_vm._v(_vm._s(_vm.$t("IMEI_SN")) + " : " + _vm._s(detail.imei_number))])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.formatNumber(detail.Net_cost, 3)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.formatNumber(detail.quantity, 2)) + " " + _vm._s(detail.unit_purchase))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.formatNumber(detail.cost, 2)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.formatNumber(detail.DiscountNet, 2)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.formatNumber(detail.taxe, 2)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(detail.total.toFixed(2)))])]);
+    }, [_vm._v(_vm._s(_vm.$t("IMEI_SN")) + " : " + _vm._s(detail.imei_number))])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.formatNumber(detail.Net_cost, 3)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.formatNumber(detail.quantity, 2)) + " " + _vm._s(detail.unit_purchase))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.formatNumber(detail.cost, 2)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(detail.total.toFixed(2)))])]);
   }), 0)])])]), _vm._v(" "), _c("div", {
     staticClass: "offset-md-9 col-md-3 mt-4"
   }, [_c("table", {
     staticClass: "table table-striped table-sm"
-  }, [_c("tbody", [_c("tr", [_c("td", {
-    staticClass: "bold"
-  }, [_vm._v(_vm._s(_vm.$t("OrderTax")))]), _vm._v(" "), _c("td", [_c("span", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.purchase.TaxNet.toFixed(2)) + " (" + _vm._s(_vm.formatNumber(_vm.purchase.tax_rate, 2)) + " %)")])])]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "bold"
-  }, [_vm._v(_vm._s(_vm.$t("Discount")))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.purchase.discount.toFixed(2)))])]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "bold"
-  }, [_vm._v(_vm._s(_vm.$t("Shipping")))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.purchase.shipping.toFixed(2)))])]), _vm._v(" "), _c("tr", [_c("td", [_c("span", {
+  }, [_c("tbody", [_c("tr", [_c("td", [_c("span", {
     staticClass: "font-weight-bold"
   }, [_vm._v(_vm._s(_vm.$t("Total")))])]), _vm._v(" "), _c("td", [_c("span", {
     staticClass: "font-weight-bold"

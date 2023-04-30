@@ -16,7 +16,7 @@
         placeholder: $t('Search_this_table'),
         enabled: true,
       }"
-        :select-options="{ 
+        :select-options="{
           enabled: true ,
           clearSelectionText: '',
         }"
@@ -34,7 +34,7 @@
             <i class="i-File-Copy"></i> PDF
           </b-button>
            <vue-excel-xlsx
-              class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
               :data="shipments"
               :columns="columns"
               :file-name="'shipments'"
@@ -402,7 +402,7 @@ export default {
         NProgress.done();
         this.$bvModal.show("modal_shipment");
       }, 800);
-     
+
     },
 
     //----------------------- Update_Shipment ---------------------------\\

@@ -7,7 +7,7 @@
       <b-col md="12">
         <b-card class="card mb-30" header-bg-variant="transparent ">
           <b-tabs active-nav-item-class="nav nav-tabs" content-class="mt-3">
-           
+
 
             <!-- Sales Table -->
             <b-tab :title="$t('Sales')">
@@ -32,9 +32,9 @@
                 styleClass="tableOne table-hover vgt-table"
               >
               <div slot="table-actions" class="mt-2 mb-3">
-                <b-button @click="Sales_PDF()" size="sm" variant="outline-success ripple m-1">
-                  <i class="i-File-Copy"></i> PDF
-                </b-button>
+                <b-button @click="Sales_PDF()" size="sm" variant="outline-danger ripple m-1">
+            <i class="i-File-Copy"></i> PDF
+          </b-button>
               </div>
                 <template slot="table-row" slot-scope="props">
                   <div v-if="props.column.field == 'statut'">
@@ -162,7 +162,7 @@
                 styleClass="tableOne table-hover vgt-table"
               >
               <div slot="table-actions" class="mt-2 mb-3">
-                <b-button @click="Purchase_PDF()" size="sm" variant="outline-success ripple m-1">
+                <b-button @click="Purchase_PDF()" size="sm" variant="outline-danger ripple m-1">
                   <i class="i-File-Copy"></i> PDF
                 </b-button>
               </div>
@@ -355,7 +355,7 @@
                   >{{$t('Sent')}}</span>
                   <span v-else class="badge badge-outline-danger">{{$t('Pending')}}</span>
                 </div>
-                  
+
                 </template>
               </vue-good-table>
             </b-tab>
@@ -390,7 +390,7 @@
               </vue-good-table>
             </b-tab>
 
-             
+
 
           </b-tabs>
         </b-card>
@@ -462,7 +462,7 @@ export default {
           thClass: "text-left",
           sortable: false
         },
-       
+
         {
           label: this.$t("date"),
           field: "date",
@@ -852,7 +852,7 @@ export default {
           tdClass: "text-left",
           thClass: "text-left"
         },
-       
+
       ];
     },
     columns_adjustments() {
@@ -1170,10 +1170,10 @@ export default {
         .then(response => {
           this.quotations = response.data.quotations;
           this.totalRows_quotations = response.data.totalRows;
-         
+
         })
         .catch(response => {
-         
+
         });
     },
 
@@ -1213,10 +1213,10 @@ export default {
         .then(response => {
           this.transfers = response.data.transfers;
           this.totalRows_transfers = response.data.totalRows;
-         
+
         })
         .catch(response => {
-         
+
         });
     },
 
@@ -1256,10 +1256,10 @@ export default {
         .then(response => {
           this.adjustments = response.data.adjustments;
           this.totalRows_adjustments = response.data.totalRows;
-         
+
         })
         .catch(response => {
-         
+
         });
     },
 

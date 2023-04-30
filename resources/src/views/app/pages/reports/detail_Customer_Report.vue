@@ -54,7 +54,7 @@
       <b-col md="12">
         <b-card class="card mb-30" header-bg-variant="transparent ">
           <b-tabs active-nav-item-class="nav nav-tabs" content-class="mt-3">
-           
+
             <!-- Sales Table -->
             <b-tab :title="$t('Sales')">
               <vue-good-table
@@ -78,9 +78,9 @@
                 styleClass="tableOne table-hover vgt-table"
               >
               <div slot="table-actions" class="mt-2 mb-3">
-                <b-button @click="Sales_PDF()" size="sm" variant="outline-success ripple m-1">
-                  <i class="i-File-Copy"></i> PDF
-                </b-button>
+                <b-button @click="Sales_PDF()" size="sm" variant="outline-danger ripple m-1">
+            <i class="i-File-Copy"></i> PDF
+          </b-button>
               </div>
                 <template slot="table-row" slot-scope="props">
                   <div v-if="props.column.field == 'statut'">
@@ -386,7 +386,7 @@ export default {
           thClass: "text-left",
           sortable: false
         },
-       
+
         {
           label: this.$t("Customer"),
           field: "client_name",
@@ -477,7 +477,7 @@ export default {
           tdClass: "text-left",
           thClass: "text-left"
         },
-       
+
         {
           label: this.$t("Total"),
           field: "GrandTotal",
@@ -536,7 +536,7 @@ export default {
           thClass: "text-left",
           sortable: false
         },
-       
+
         {
           label: this.$t("Sale"),
           field: "Sale_Ref",

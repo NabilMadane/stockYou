@@ -9,7 +9,7 @@
         </b-col>
       <!-- Warehouse Quantity -->
           <b-col md="5" class="mt-4">
-          
+
             <table class="table table-hover table-sm">
               <thead>
                 <tr>
@@ -48,7 +48,7 @@
       <b-col md="12">
         <b-card class="card mb-30" header-bg-variant="transparent ">
           <b-tabs active-nav-item-class="nav nav-tabs" content-class="mt-3">
-           
+
 
             <!-- Sales Table -->
             <b-tab :title="$t('Sales')">
@@ -73,12 +73,12 @@
                 styleClass="tableOne table-hover vgt-table"
               >
               <div slot="table-actions" class="mt-2 mb-3">
-                <b-button @click="Sales_PDF()" size="sm" variant="outline-success ripple m-1">
-                  <i class="i-File-Copy"></i> PDF
-                </b-button>
+                <b-button @click="Sales_PDF()" size="sm" variant="outline-danger ripple m-1">
+            <i class="i-File-Copy"></i> PDF
+          </b-button>
 
                 <vue-excel-xlsx
-                    class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
                     :data="sales"
                     :columns="columns_sales"
                     :file-name="'sales_report'"
@@ -97,7 +97,7 @@
                       <span class="ul-btn__text ml-1">{{props.row.Ref}}</span>
                     </router-link>
                   </div>
-                 
+
                   <div v-else-if="props.column.field == 'total'">
                     <span>{{currentUser.currency}} {{props.row.total}}</span>
                   </div>
@@ -134,7 +134,7 @@
                 </b-button>
 
                 <vue-excel-xlsx
-                    class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
                     :data="quotations"
                     :columns="columns_quotations"
                     :file-name="'Quotation_report'"
@@ -145,7 +145,7 @@
                 </vue-excel-xlsx>
               </div>
                 <template slot="table-row" slot-scope="props">
-                  
+
                    <div v-if="props.column.field == 'Ref'">
                     <router-link
                       :to="'/app/quotations/detail/'+props.row.quotation_id"
@@ -185,12 +185,12 @@
                 styleClass="tableOne table-hover vgt-table"
               >
               <div slot="table-actions" class="mt-2 mb-3">
-                <b-button @click="Purchase_PDF()" size="sm" variant="outline-success ripple m-1">
+                <b-button @click="Purchase_PDF()" size="sm" variant="outline-danger ripple m-1">
                   <i class="i-File-Copy"></i> PDF
                 </b-button>
 
                 <vue-excel-xlsx
-                    class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
                     :data="purchases"
                     :columns="columns_purchases"
                     :file-name="'purchases_report'"
@@ -245,7 +245,7 @@
                 </b-button>
 
                 <vue-excel-xlsx
-                    class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
                     :data="sales_return"
                     :columns="columns_sales_return"
                     :file-name="'sales_return_report'"
@@ -256,7 +256,7 @@
                 </vue-excel-xlsx>
               </div>
                 <template slot="table-row" slot-scope="props">
-                  
+
                   <div v-if="props.column.field == 'Ref'">
                     <router-link
                       :to="'/app/sale_return/detail/'+props.row.return_sale_id"
@@ -300,7 +300,7 @@
                 </b-button>
 
                 <vue-excel-xlsx
-                    class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
                     :data="purchases_return"
                     :columns="columns_purchase_return"
                     :file-name="'purchases_return_report'"
@@ -311,7 +311,7 @@
                 </vue-excel-xlsx>
               </div>
                 <template slot="table-row" slot-scope="props">
-                  
+
                   <div v-if="props.column.field == 'Ref'">
                     <router-link
                       :to="'/app/purchase_return/detail/'+props.row.return_purchase_id"
@@ -354,7 +354,7 @@
                   <i class="i-File-Copy"></i> PDF
                 </b-button>
               </div>
-               
+
               </vue-good-table>
             </b-tab>
 
@@ -388,7 +388,7 @@
               </vue-good-table>
             </b-tab>
 
-             
+
 
           </b-tabs>
         </b-card>
@@ -552,7 +552,7 @@ export default {
           thClass: "text-left",
           sortable: false
         },
-        
+
       ];
     },
     columns_sales_return() {
@@ -741,7 +741,7 @@ export default {
           tdClass: "text-left",
           thClass: "text-left"
         },
-       
+
       ];
     },
     columns_adjustments() {
@@ -771,7 +771,7 @@ export default {
           tdClass: "text-left",
           thClass: "text-left"
         },
-       
+
       ];
     }
   },
@@ -914,7 +914,7 @@ export default {
           this.product = response.data;
         })
         .catch(response => {
-         
+
         });
     },
 
@@ -1055,10 +1055,10 @@ export default {
         .then(response => {
           this.quotations = response.data.quotations;
           this.totalRows_quotations = response.data.totalRows;
-         
+
         })
         .catch(response => {
-         
+
         });
     },
 
@@ -1098,10 +1098,10 @@ export default {
         .then(response => {
           this.transfers = response.data.transfers;
           this.totalRows_transfers = response.data.totalRows;
-         
+
         })
         .catch(response => {
-         
+
         });
     },
 
@@ -1141,10 +1141,10 @@ export default {
         .then(response => {
           this.adjustments = response.data.adjustments;
           this.totalRows_adjustments = response.data.totalRows;
-         
+
         })
         .catch(response => {
-         
+
         });
     },
 

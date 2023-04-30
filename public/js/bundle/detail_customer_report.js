@@ -696,7 +696,7 @@ var render = function render() {
   }, [_c("b-button", {
     attrs: {
       size: "sm",
-      variant: "outline-success ripple m-1"
+      variant: "outline-danger ripple m-1"
     },
     on: {
       click: function click($event) {
@@ -705,7 +705,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "i-File-Copy"
-  }), _vm._v(" PDF\n              ")])], 1)])], 1), _vm._v(" "), _c("b-tab", {
+  }), _vm._v(" PDF\n        ")])], 1)])], 1), _vm._v(" "), _c("b-tab", {
     attrs: {
       title: _vm.$t("Quotations")
     }

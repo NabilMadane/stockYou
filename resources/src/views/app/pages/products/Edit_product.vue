@@ -31,6 +31,27 @@
                       </b-form-group>
                     </validation-provider>
                   </b-col>
+                  <!-- name ar -->
+                  <b-col md="6" class="mb-2">
+                    <validation-provider
+                      name="name_ar"
+                      :rules="{required:true , min:3 , max:55}"
+                      v-slot="validationContext"
+                    >
+                      <b-form-group :label="$t('Name_ar_product') + ' ' + '*'">
+                        <b-form-input
+                          :state="getValidationState(validationContext)"
+                          aria-describedby="name-feedback"
+                          label="name"
+                          :placeholder="$t('Enter_Name_ar_product')"
+                          v-model="product.name_ar"
+                        ></b-form-input>
+                        <b-form-invalid-feedback
+                          id="name-feedback"
+                        >{{ validationContext.errors[0] }}</b-form-invalid-feedback>
+                      </b-form-group>
+                    </validation-provider>
+                  </b-col>
 
                   <!-- Code Product"-->
                   <b-col md="6" class="mb-2">
@@ -94,7 +115,7 @@
                   </b-col>
 
                   <!-- Barcode Symbology  -->
-                  <b-col md="6" class="mb-2">
+           <!--       <b-col md="6" class="mb-2">
                     <validation-provider name="Barcode Symbology" :rules="{ required: true}">
                       <b-form-group slot-scope="{ valid, errors }" :label="$t('BarcodeSymbology') + ' ' + '*'">
                         <v-select
@@ -115,7 +136,7 @@
                         <b-form-invalid-feedback>{{ errors[0] }}</b-form-invalid-feedback>
                       </b-form-group>
                     </validation-provider>
-                  </b-col>
+                  </b-col>-->
 
                   <!-- Product Cost -->
                   <b-col md="6" class="mb-2">
@@ -239,7 +260,7 @@
                   </b-col>
 
                   <!-- Order Tax -->
-                  <b-col md="6" class="mb-2">
+             <!--     <b-col md="6" class="mb-2">
                     <validation-provider
                       name="Order Tax"
                       :rules="{regex: /^\d*\.?\d*$/}"
@@ -265,7 +286,7 @@
                     </validation-provider>
                   </b-col>
 
-                  <!-- Tax Method -->
+                  &lt;!&ndash; Tax Method &ndash;&gt;
                   <b-col lg="6" md="6" sm="12" class="mb-2">
                     <validation-provider name="Tax Method" :rules="{ required: true}">
                       <b-form-group slot-scope="{ valid, errors }" :label="$t('TaxMethod') + ' ' + '*'">
@@ -284,7 +305,7 @@
                         <b-form-invalid-feedback>{{ errors[0] }}</b-form-invalid-feedback>
                       </b-form-group>
                     </validation-provider>
-                  </b-col>
+                  </b-col>-->
 
                   <b-col md="12" class="mb-2">
                     <b-form-group :label="$t('Description')">
@@ -298,7 +319,7 @@
                   </b-col>
 
                     <!-- Multiple Variants -->
-                  <b-col md="12 mb-2">
+                <!--  <b-col md="12 mb-2">
                     <div class="form-check">
                       <label class="checkbox checkbox-outline-primary">
                         <input type="checkbox" v-model="product.is_variant">
@@ -318,7 +339,7 @@
                     />
                   </b-col>
 
-                   <!-- Product_Has_Imei_Serial_number -->
+                   &lt;!&ndash; Product_Has_Imei_Serial_number &ndash;&gt;
                    <b-col md="12 mb-2">
                     <ValidationProvider rules vid="product" v-slot="x">
                       <div class="form-check">
@@ -331,7 +352,7 @@
                     </ValidationProvider>
                   </b-col>
 
-                   <!-- This_Product_Not_For_Selling -->
+                   &lt;!&ndash; This_Product_Not_For_Selling &ndash;&gt;
                    <b-col md="12 mb-2">
                     <ValidationProvider rules vid="product" v-slot="x">
                       <div class="form-check">
@@ -342,7 +363,7 @@
                         </label>
                       </div>
                     </ValidationProvider>
-                  </b-col>
+                  </b-col>-->
 
                 </b-row>
               </b-card-body>
@@ -421,8 +442,9 @@ export default {
       variants: [],
       product: {
         name: "",
+        name_ar: "",
         code: "",
-        Type_barcode: "",
+        Type_barcode: "CODE128",
         cost: "",
         price: "",
         brand_id: "",
@@ -487,7 +509,7 @@ export default {
       );
     },
 
-   
+
 
     //------ event upload Image Success
     uploadImageSuccess(formData, index, fileList, imageArray) {

@@ -12,14 +12,14 @@
         @on-per-page-change="onPerPageChange"
         @on-sort-change="onSortChange"
         @on-search="onSearch"
-        :select-options="{ 
+        :select-options="{
           enabled: true ,
           clearSelectionText: '',
         }"
         @on-selected-rows-change="selectionChanged"
         :search-options="{
           enabled: true,
-          placeholder: $t('Search_this_table'),  
+          placeholder: $t('Search_this_table'),
         }"
         :pagination-options="{
         enabled: true,
@@ -41,7 +41,7 @@
             <i class="i-File-Copy"></i> PDF
           </b-button>
           <vue-excel-xlsx
-              class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
               :data="products"
               :columns="columns"
               :file-name="'products'"

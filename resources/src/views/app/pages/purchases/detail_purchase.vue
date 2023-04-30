@@ -15,14 +15,14 @@
             <i class="i-Edit"></i>
             <span>{{$t('EditPurchase')}}</span>
           </router-link>
-          <button @click="purchase_Email()" class="btn btn-info btn-icon ripple btn-sm">
+        <!--  <button @click="purchase_Email()" class="btn btn-info btn-icon ripple btn-sm">
             <i class="i-Envelope-2"></i>
             {{$t('Email')}}
           </button>
            <button @click="Purchase_SMS()" class="btn btn-secondary btn-icon ripple btn-sm">
             <i class="i-Speach-Bubble"></i>
             SMS
-          </button>
+          </button>-->
           <button @click="Print_Purchase_PDF()" class="btn btn-primary btn-icon ripple btn-sm">
             <i class="i-File-TXT"></i> PDF
           </button>
@@ -102,8 +102,8 @@
                       <th scope="col">{{$t('Net_Unit_Cost')}}</th>
                       <th scope="col">{{$t('Quantity')}}</th>
                       <th scope="col">{{$t('Unitcost')}}</th>
-                      <th scope="col">{{$t('Discount')}}</th>
-                      <th scope="col">{{$t('Tax')}}</th>
+                     <!-- <th scope="col">{{$t('Discount')}}</th>
+                      <th scope="col">{{$t('Tax')}}</th>-->
                       <th scope="col">{{$t('SubTotal')}}</th>
                     </tr>
                   </thead>
@@ -115,8 +115,8 @@
                       <td>{{currentUser.currency}} {{formatNumber(detail.Net_cost,3)}}</td>
                       <td>{{formatNumber(detail.quantity,2)}} {{detail.unit_purchase}}</td>
                       <td>{{currentUser.currency}} {{formatNumber(detail.cost,2)}}</td>
-                      <td>{{currentUser.currency}} {{formatNumber(detail.DiscountNet,2)}}</td>
-                      <td>{{currentUser.currency}} {{formatNumber(detail.taxe,2)}}</td>
+                    <!--  <td>{{currentUser.currency}} {{formatNumber(detail.DiscountNet,2)}}</td>
+                      <td>{{currentUser.currency}} {{formatNumber(detail.taxe,2)}}</td>-->
                       <td>{{currentUser.currency}} {{detail.total.toFixed(2)}}</td>
                     </tr>
                   </tbody>
@@ -126,7 +126,7 @@
             <div class="offset-md-9 col-md-3 mt-4">
               <table class="table table-striped table-sm">
                 <tbody>
-                  <tr>
+               <!--   <tr>
                     <td class="bold">{{$t('OrderTax')}}</td>
                     <td>
                       <span>{{currentUser.currency}} {{purchase.TaxNet.toFixed(2)}} ({{formatNumber(purchase.tax_rate,2)}} %)</span>
@@ -139,7 +139,7 @@
                   <tr>
                     <td class="bold">{{$t('Shipping')}}</td>
                     <td>{{currentUser.currency}} {{purchase.shipping.toFixed(2)}}</td>
-                  </tr>
+                  </tr>-->
                   <tr>
                     <td>
                       <span class="font-weight-bold">{{$t('Total')}}</span>
@@ -228,7 +228,7 @@ export default {
             "Content-Type": "application/json"
           }
         })
-     
+
         .then(response => {
           const url = window.URL.createObjectURL(new Blob([response.data]));
           const link = document.createElement("a");
@@ -323,7 +323,7 @@ export default {
     },
 
      //---------SMS notification
-     
+
      Purchase_SMS() {
       // Start the progress bar.
       NProgress.start();

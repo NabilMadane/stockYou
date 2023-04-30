@@ -581,7 +581,7 @@ var render = function render() {
   }, [_c("b-button", {
     attrs: {
       size: "sm",
-      variant: "outline-success ripple m-1"
+      variant: "outline-danger ripple m-1"
     },
     on: {
       click: function click($event) {

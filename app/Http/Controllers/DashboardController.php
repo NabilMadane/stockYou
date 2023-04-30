@@ -373,13 +373,18 @@ class DashboardController extends Controller
 //---------------- product stock money
 
         $data['prete'] = Sale::where('deleted_at', '=', null)
+            ->where(function ($query) use ($view_records) {
+                if (!$view_records) {
+                    return $query->where('user_id', '=', Auth::user()->id);
+                }
+            })
             ->where(function ($query) use ($warehouse_id, $array_warehouses_id) {
                 if ($warehouse_id !== 0) {
                     return $query->where('warehouse_id', $warehouse_id);
                 }else{
                     return $query->whereIn('warehouse_id', $array_warehouses_id);
                 }})
-            ->get(DB::raw('SUM(GrandTotal) - SUM(paid_amount)  As prete'))->first()->prete;;
+            ->get(DB::raw('SUM(GrandTotal-paid_amount) As prete'))->first()->prete;;
 
         $data['prete'] = number_format($data['prete'], 2, '.', ',');
 

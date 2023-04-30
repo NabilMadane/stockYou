@@ -78,7 +78,7 @@
                 styleClass="tableOne table-hover vgt-table"
               >
                <div slot="table-actions" class="mt-2 mb-3">
-                <b-button @click="Purchase_PDF()" size="sm" variant="outline-success ripple m-1">
+                <b-button @click="Purchase_PDF()" size="sm" variant="outline-danger ripple m-1">
                   <i class="i-File-Copy"></i> PDF
                 </b-button>
               </div>
@@ -115,7 +115,7 @@
                 </template>
               </vue-good-table>
             </b-tab>
-            
+
             <!-- Returns Table -->
             <b-tab :title="$t('Returns')">
               <vue-good-table
@@ -180,7 +180,7 @@
                 </template>
               </vue-good-table>
             </b-tab>
-            
+
             <!-- Payments Table -->
             <b-tab :title="$t('PurchaseInvoice')">
               <vue-good-table
@@ -278,7 +278,7 @@ export default {
           tdClass: "text-left",
           thClass: "text-left"
         },
-       
+
         {
           label: this.$t("Total"),
           field: "GrandTotal",
@@ -349,7 +349,7 @@ export default {
           tdClass: "text-left",
           thClass: "text-left"
         },
-       
+
         {
           label: this.$t("Total"),
           field: "GrandTotal",

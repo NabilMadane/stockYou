@@ -56,7 +56,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         statut: "received",
         notes: "",
         supplier_id: "",
-        warehouse_id: "",
+        warehouse_id: 1,
         tax_rate: 0,
         TaxNet: 0,
         shipping: 0,
@@ -240,13 +240,13 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           var product_filter = _this6.products.filter(function (product) {
             return product.code === _this6.search_input || product.barcode.includes(_this6.search_input);
           });
-          if (product_filter.length === 1) {
-            _this6.SearchProduct(product_filter[0]);
-          } else {
-            _this6.product_filter = _this6.products.filter(function (product) {
-              return product.name.toLowerCase().includes(_this6.search_input.toLowerCase()) || product.code.toLowerCase().includes(_this6.search_input.toLowerCase()) || product.barcode.toLowerCase().includes(_this6.search_input.toLowerCase());
-            });
-          }
+          /*   if(product_filter.length === 1){
+                 this.SearchProduct(product_filter[0])
+             }else{*/
+          _this6.product_filter = _this6.products.filter(function (product) {
+            return product.name.toLowerCase().includes(_this6.search_input.toLowerCase()) || product.code.toLowerCase().includes(_this6.search_input.toLowerCase()) || product.barcode.toLowerCase().includes(_this6.search_input.toLowerCase());
+          });
+          // }
         }, 800);
       } else {
         this.makeToast("warning", this.$t("SelectWarehouse"), this.$t("Warning"));
@@ -505,6 +505,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   //-----------------------------  Created function-------------------
   created: function created() {
     this.GetElements();
+    this.Get_Products_By_Warehouse(this.purchase.warehouse_id);
   }
 });
 
@@ -770,14 +771,6 @@ var render = function render() {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v(_vm._s(_vm.$t("Discount")))]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v(_vm._s(_vm.$t("Tax")))]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
   }, [_vm._v(_vm._s(_vm.$t("SubTotal")))]), _vm._v(" "), _c("th", {
     staticClass: "text-center",
     attrs: {
@@ -839,7 +832,7 @@ var render = function render() {
           return _vm.increment(detail, detail.detail_id);
         }
       }
-    }, [_vm._v("+")])])], 1)], 1)]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.formatNumber(detail.DiscountNet * detail.quantity, 2)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.formatNumber(detail.taxe * detail.quantity, 2)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(detail.subtotal.toFixed(2)))]), _vm._v(" "), _c("td", [_c("i", {
+    }, [_vm._v("+")])])], 1)], 1)]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(detail.subtotal.toFixed(2)))]), _vm._v(" "), _c("td", [_c("i", {
       staticClass: "i-Edit text-25 text-success",
       on: {
         click: function click($event) {
@@ -858,167 +851,11 @@ var render = function render() {
     staticClass: "offset-md-9 col-md-3 mt-4"
   }, [_c("table", {
     staticClass: "table table-striped table-sm"
-  }, [_c("tbody", [_c("tr", [_c("td", {
-    staticClass: "bold"
-  }, [_vm._v(_vm._s(_vm.$t("OrderTax")))]), _vm._v(" "), _c("td", [_c("span", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.purchase.TaxNet.toFixed(2)) + " (" + _vm._s(_vm.formatNumber(_vm.purchase.tax_rate, 2)) + " %)")])])]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "bold"
-  }, [_vm._v(_vm._s(_vm.$t("Discount")))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.purchase.discount.toFixed(2)))])]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "bold"
-  }, [_vm._v(_vm._s(_vm.$t("Shipping")))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.purchase.shipping.toFixed(2)))])]), _vm._v(" "), _c("tr", [_c("td", [_c("span", {
+  }, [_c("tbody", [_c("tr", [_c("td", [_c("span", {
     staticClass: "font-weight-bold"
   }, [_vm._v(_vm._s(_vm.$t("Total")))])]), _vm._v(" "), _c("td", [_c("span", {
     staticClass: "font-weight-bold"
   }, [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.GrandTotal.toFixed(2)))])])])])])]), _vm._v(" "), _c("b-col", {
-    staticClass: "mb-3",
-    attrs: {
-      lg: "4",
-      md: "4",
-      sm: "12"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
-      name: "Order Tax",
-      rules: {
-        regex: /^\d*\.?\d*$/
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(validationContext) {
-        return [_c("b-form-group", {
-          attrs: {
-            label: _vm.$t("OrderTax")
-          }
-        }, [_c("b-input-group", {
-          attrs: {
-            append: "%"
-          }
-        }, [_c("b-form-input", {
-          attrs: {
-            state: _vm.getValidationState(validationContext),
-            "aria-describedby": "OrderTax-feedback",
-            label: "Order Tax"
-          },
-          on: {
-            keyup: function keyup($event) {
-              return _vm.keyup_OrderTax();
-            }
-          },
-          model: {
-            value: _vm.purchase.tax_rate,
-            callback: function callback($$v) {
-              _vm.$set(_vm.purchase, "tax_rate", _vm._n($$v));
-            },
-            expression: "purchase.tax_rate"
-          }
-        })], 1), _vm._v(" "), _c("b-form-invalid-feedback", {
-          attrs: {
-            id: "OrderTax-feedback"
-          }
-        }, [_vm._v(_vm._s(validationContext.errors[0]))])], 1)];
-      }
-    }], null, false, 2647717874)
-  })], 1), _vm._v(" "), _c("b-col", {
-    staticClass: "mb-3",
-    attrs: {
-      lg: "4",
-      md: "4",
-      sm: "12"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
-      name: "Discount",
-      rules: {
-        regex: /^\d*\.?\d*$/
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(validationContext) {
-        return [_c("b-form-group", {
-          attrs: {
-            label: _vm.$t("Discount")
-          }
-        }, [_c("b-input-group", {
-          attrs: {
-            append: _vm.currentUser.currency
-          }
-        }, [_c("b-form-input", {
-          attrs: {
-            state: _vm.getValidationState(validationContext),
-            "aria-describedby": "Discount-feedback",
-            label: "Discount"
-          },
-          on: {
-            keyup: function keyup($event) {
-              return _vm.keyup_Discount();
-            }
-          },
-          model: {
-            value: _vm.purchase.discount,
-            callback: function callback($$v) {
-              _vm.$set(_vm.purchase, "discount", _vm._n($$v));
-            },
-            expression: "purchase.discount"
-          }
-        })], 1), _vm._v(" "), _c("b-form-invalid-feedback", {
-          attrs: {
-            id: "Discount-feedback"
-          }
-        }, [_vm._v(_vm._s(validationContext.errors[0]))])], 1)];
-      }
-    }], null, false, 98387733)
-  })], 1), _vm._v(" "), _c("b-col", {
-    staticClass: "mb-3",
-    attrs: {
-      lg: "4",
-      md: "4",
-      sm: "12"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
-      name: "Shipping",
-      rules: {
-        regex: /^\d*\.?\d*$/
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(validationContext) {
-        return [_c("b-form-group", {
-          attrs: {
-            label: _vm.$t("Shipping")
-          }
-        }, [_c("b-input-group", {
-          attrs: {
-            append: _vm.currentUser.currency
-          }
-        }, [_c("b-form-input", {
-          attrs: {
-            state: _vm.getValidationState(validationContext),
-            "aria-describedby": "Shipping-feedback",
-            label: "Shipping"
-          },
-          on: {
-            keyup: function keyup($event) {
-              return _vm.keyup_Shipping();
-            }
-          },
-          model: {
-            value: _vm.purchase.shipping,
-            callback: function callback($$v) {
-              _vm.$set(_vm.purchase, "shipping", _vm._n($$v));
-            },
-            expression: "purchase.shipping"
-          }
-        })], 1), _vm._v(" "), _c("b-form-invalid-feedback", {
-          attrs: {
-            id: "Shipping-feedback"
-          }
-        }, [_vm._v(_vm._s(validationContext.errors[0]))])], 1)];
-      }
-    }], null, false, 497113045)
-  })], 1), _vm._v(" "), _c("b-col", {
     staticClass: "mb-3",
     attrs: {
       lg: "4",
@@ -1071,7 +908,7 @@ var render = function render() {
           }
         }), _vm._v(" "), _c("b-form-invalid-feedback", [_vm._v(_vm._s(errors[0]))])], 1);
       }
-    }], null, false, 3503637598)
+    }], null, false, 1712719454)
   })], 1), _vm._v(" "), _c("b-col", {
     attrs: {
       md: "12"

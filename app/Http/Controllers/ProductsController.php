@@ -910,6 +910,7 @@ class ProductsController extends BaseController
         $item['code'] = $Product->code;
         $item['Type_barcode'] = $Product->Type_barcode;
         $item['name'] = $Product->name;
+        $item['name_ar'] = $Product->name_ar;
         if ($Product->category_id) {
             if (Category::where('id', $Product->category_id)
                 ->where('deleted_at', '=', null)

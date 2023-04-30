@@ -37,11 +37,11 @@
             <i class="i-Filter-2"></i>
             {{ $t("Filter") }}
           </b-button>
-          <b-button @click="Purchase_PDF()" size="sm" variant="outline-success ripple m-1">
+          <b-button @click="Purchase_PDF()" size="sm" variant="outline-danger ripple m-1">
             <i class="i-File-Copy"></i> PDF
           </b-button>
           <vue-excel-xlsx
-              class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
               :data="purchases"
               :columns="columns"
               :file-name="'purchases'"

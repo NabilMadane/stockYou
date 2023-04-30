@@ -131,9 +131,9 @@
                 styleClass="order-table vgt-table mt-2"
               >
                <div slot="table-actions" class="mt-2 mb-3">
-                <b-button @click="Sales_PDF()" size="sm" variant="outline-success ripple m-1">
-                  <i class="i-File-Copy"></i> PDF
-                </b-button>
+                <b-button @click="Sales_PDF()" size="sm" variant="outline-danger ripple m-1">
+            <i class="i-File-Copy"></i> PDF
+          </b-button>
               </div>
                 <template slot="table-row" slot-scope="props">
                   <div v-if="props.column.field == 'statut'">

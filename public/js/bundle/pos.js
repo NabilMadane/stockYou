@@ -686,6 +686,33 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         return nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
       }, 500);
     });
+  }), _defineProperty(_objectSpread2, "Invoice_PDF", function Invoice_PDF(id) {
+    // Start the progress bar.
+    nprogress__WEBPACK_IMPORTED_MODULE_0___default().start();
+    nprogress__WEBPACK_IMPORTED_MODULE_0___default().set(0.1);
+    axios.get("sale_pdf/" + id, {
+      responseType: "blob",
+      // important
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(function (response) {
+      var url = window.URL.createObjectURL(new Blob([response.data]));
+      var link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "Sale.pdf");
+      document.body.appendChild(link);
+      link.click();
+      // Complete the animation of the  progress bar.
+      setTimeout(function () {
+        return nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
+      }, 500);
+    })["catch"](function () {
+      // Complete the animation of the  progress bar.
+      setTimeout(function () {
+        return nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
+      }, 500);
+    });
   }), _defineProperty(_objectSpread2, "processPayment", function processPayment() {
     var _this14 = this;
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
@@ -773,7 +800,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           // Complete the animation of theprogress bar.
           nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
           _this15.paymentProcessing = false;
-          _this15.Invoice_POS(response.data.id);
+          //this.Invoice_POS(response.data.id);
+          _this15.Invoice_PDF(response.data.id);
           _this15.$bvModal.hide("Add_Payment");
           _this15.Reset_Pos();
         }
@@ -980,13 +1008,20 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         var product_filter = _this17.products_pos.filter(function (product) {
           return product.code === _this17.search_input || product.barcode.includes(_this17.search_input);
         });
-        if (product_filter.length === 1) {
-          _this17.Check_Product_Exist(product_filter[0], product_filter[0].id);
-        } else {
-          _this17.product_filter = _this17.products_pos.filter(function (product) {
-            return product.name.toLowerCase().includes(_this17.search_input.toLowerCase()) || product.code.toLowerCase().includes(_this17.search_input.toLowerCase()) || product.barcode.toLowerCase().includes(_this17.search_input.toLowerCase());
-          });
-        }
+        /*  if(product_filter.length === 1){
+              this.Check_Product_Exist(product_filter[0], product_filter[0].id);
+          }else{
+              this.product_filter=  this.products_pos.filter(product => {
+                return (
+                  product.name.toLowerCase().includes(this.search_input.toLowerCase()) ||
+                  product.code.toLowerCase().includes(this.search_input.toLowerCase()) ||
+                  product.barcode.toLowerCase().includes(this.search_input.toLowerCase())
+                  );
+              });
+          }*/
+        _this17.product_filter = _this17.products_pos.filter(function (product) {
+          return product.name.toLowerCase().includes(_this17.search_input.toLowerCase()) || product.code.toLowerCase().includes(_this17.search_input.toLowerCase()) || product.barcode.toLowerCase().includes(_this17.search_input.toLowerCase());
+        });
       }, 800);
     } else {
       this.makeToast("warning", this.$t("SelectWarehouse"), this.$t("Warning"));
@@ -1425,155 +1460,6 @@ var render = function render() {
     staticClass: "grandtotal"
   }, [_c("span", [_vm._v(_vm._s(_vm.$t("Total_Payable")) + " : " + _vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.GrandTotal.toFixed(2)))])])]), _vm._v(" "), _c("b-col", {
     attrs: {
-      lg: "4",
-      md: "4",
-      sm: "12"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
-      name: "Order Tax",
-      rules: {
-        regex: /^\d*\.?\d*$/
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(validationContext) {
-        return [_c("b-form-group", {
-          attrs: {
-            label: _vm.$t("Tax"),
-            append: "%"
-          }
-        }, [_c("b-input-group", {
-          attrs: {
-            append: "%"
-          }
-        }, [_c("b-form-input", {
-          attrs: {
-            state: _vm.getValidationState(validationContext),
-            "aria-describedby": "OrderTax-feedback",
-            label: "Order Tax"
-          },
-          on: {
-            keyup: function keyup($event) {
-              return _vm.keyup_OrderTax();
-            }
-          },
-          model: {
-            value: _vm.sale.tax_rate,
-            callback: function callback($$v) {
-              _vm.$set(_vm.sale, "tax_rate", _vm._n($$v));
-            },
-            expression: "sale.tax_rate"
-          }
-        })], 1), _vm._v(" "), _c("b-form-invalid-feedback", {
-          attrs: {
-            id: "OrderTax-feedback"
-          }
-        }, [_vm._v(_vm._s(validationContext.errors[0]))])], 1)];
-      }
-    }], null, false, 1527368817)
-  })], 1), _vm._v(" "), _c("b-col", {
-    attrs: {
-      lg: "4",
-      md: "4",
-      sm: "12"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
-      name: "Discount",
-      rules: {
-        regex: /^\d*\.?\d*$/
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(validationContext) {
-        return [_c("b-form-group", {
-          attrs: {
-            label: _vm.$t("Discount"),
-            append: "%"
-          }
-        }, [_c("b-input-group", {
-          attrs: {
-            append: _vm.currentUser.currency
-          }
-        }, [_c("b-form-input", {
-          attrs: {
-            state: _vm.getValidationState(validationContext),
-            "aria-describedby": "Discount-feedback",
-            label: "Discount"
-          },
-          on: {
-            keyup: function keyup($event) {
-              return _vm.keyup_Discount();
-            }
-          },
-          model: {
-            value: _vm.sale.discount,
-            callback: function callback($$v) {
-              _vm.$set(_vm.sale, "discount", _vm._n($$v));
-            },
-            expression: "sale.discount"
-          }
-        })], 1), _vm._v(" "), _c("b-form-invalid-feedback", {
-          attrs: {
-            id: "Discount-feedback"
-          }
-        }, [_vm._v(_vm._s(validationContext.errors[0]))])], 1)];
-      }
-    }], null, false, 2452246776)
-  })], 1), _vm._v(" "), _c("b-col", {
-    attrs: {
-      lg: "4",
-      md: "4",
-      sm: "12"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
-      name: "Shipping",
-      rules: {
-        regex: /^\d*\.?\d*$/
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(validationContext) {
-        return [_c("b-form-group", {
-          attrs: {
-            label: _vm.$t("Shipping")
-          }
-        }, [_c("b-input-group", {
-          attrs: {
-            append: _vm.currentUser.currency
-          }
-        }, [_c("b-form-input", {
-          attrs: {
-            state: _vm.getValidationState(validationContext),
-            "aria-describedby": "Shipping-feedback",
-            label: "Shipping"
-          },
-          on: {
-            keyup: function keyup($event) {
-              return _vm.keyup_Shipping();
-            }
-          },
-          model: {
-            value: _vm.sale.shipping,
-            callback: function callback($$v) {
-              _vm.$set(_vm.sale, "shipping", _vm._n($$v));
-            },
-            expression: "sale.shipping"
-          }
-        })], 1), _vm._v(" "), _c("b-form-invalid-feedback", {
-          attrs: {
-            id: "Shipping-feedback"
-          }
-        }, [_vm._v(_vm._s(validationContext.errors[0]))])], 1)];
-      }
-    }], null, false, 1943903941)
-  })], 1), _vm._v(" "), _c("b-col", {
-    attrs: {
       md: "6",
       sm: "12"
     }
@@ -1666,7 +1552,7 @@ var render = function render() {
     }
   }, [_c("validation-provider", {
     attrs: {
-      name: "Tax Method",
+      name: "Unit Sale",
       rules: {
         required: true
       }
@@ -1676,192 +1562,6 @@ var render = function render() {
       fn: function fn(_ref3) {
         var valid = _ref3.valid,
           errors = _ref3.errors;
-        return _c("b-form-group", {
-          attrs: {
-            label: _vm.$t("TaxMethod") + " " + "*"
-          }
-        }, [_c("v-select", {
-          "class": {
-            "is-invalid": !!errors.length
-          },
-          attrs: {
-            state: errors[0] ? false : valid ? true : null,
-            reduce: function reduce(label) {
-              return label.value;
-            },
-            placeholder: _vm.$t("Choose_Method"),
-            options: [{
-              label: "Exclusive",
-              value: "1"
-            }, {
-              label: "Inclusive",
-              value: "2"
-            }]
-          },
-          model: {
-            value: _vm.detail.tax_method,
-            callback: function callback($$v) {
-              _vm.$set(_vm.detail, "tax_method", $$v);
-            },
-            expression: "detail.tax_method"
-          }
-        }), _vm._v(" "), _c("b-form-invalid-feedback", [_vm._v(_vm._s(errors[0]))])], 1);
-      }
-    }], null, false, 2540064975)
-  })], 1), _vm._v(" "), _c("b-col", {
-    attrs: {
-      lg: "6",
-      md: "6",
-      sm: "12"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
-      name: "Tax",
-      rules: {
-        required: true,
-        regex: /^\d*\.?\d*$/
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(validationContext) {
-        return [_c("b-form-group", {
-          attrs: {
-            label: _vm.$t("Tax") + " " + "*"
-          }
-        }, [_c("b-input-group", {
-          attrs: {
-            append: "%"
-          }
-        }, [_c("b-form-input", {
-          attrs: {
-            label: "Tax",
-            state: _vm.getValidationState(validationContext),
-            "aria-describedby": "Tax-feedback"
-          },
-          model: {
-            value: _vm.detail.tax_percent,
-            callback: function callback($$v) {
-              _vm.$set(_vm.detail, "tax_percent", $$v);
-            },
-            expression: "detail.tax_percent"
-          }
-        })], 1), _vm._v(" "), _c("b-form-invalid-feedback", {
-          attrs: {
-            id: "Tax-feedback"
-          }
-        }, [_vm._v(_vm._s(validationContext.errors[0]))])], 1)];
-      }
-    }], null, false, 3285426138)
-  })], 1), _vm._v(" "), _c("b-col", {
-    attrs: {
-      lg: "6",
-      md: "6",
-      sm: "12"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
-      name: "Discount Method",
-      rules: {
-        required: true
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(_ref4) {
-        var valid = _ref4.valid,
-          errors = _ref4.errors;
-        return _c("b-form-group", {
-          attrs: {
-            label: _vm.$t("Discount_Method") + " " + "*"
-          }
-        }, [_c("v-select", {
-          "class": {
-            "is-invalid": !!errors.length
-          },
-          attrs: {
-            reduce: function reduce(label) {
-              return label.value;
-            },
-            placeholder: _vm.$t("Choose_Method"),
-            state: errors[0] ? false : valid ? true : null,
-            options: [{
-              label: "Percent %",
-              value: "1"
-            }, {
-              label: "Fixed",
-              value: "2"
-            }]
-          },
-          model: {
-            value: _vm.detail.discount_Method,
-            callback: function callback($$v) {
-              _vm.$set(_vm.detail, "discount_Method", $$v);
-            },
-            expression: "detail.discount_Method"
-          }
-        }), _vm._v(" "), _c("b-form-invalid-feedback", [_vm._v(_vm._s(errors[0]))])], 1);
-      }
-    }], null, false, 4285478530)
-  })], 1), _vm._v(" "), _c("b-col", {
-    attrs: {
-      lg: "6",
-      md: "6",
-      sm: "12"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
-      name: "Discount Rate",
-      rules: {
-        required: true,
-        regex: /^\d*\.?\d*$/
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(validationContext) {
-        return [_c("b-form-group", {
-          attrs: {
-            label: _vm.$t("Discount") + " " + "*"
-          }
-        }, [_c("b-form-input", {
-          attrs: {
-            label: "Discount",
-            state: _vm.getValidationState(validationContext),
-            "aria-describedby": "Discount-feedback"
-          },
-          model: {
-            value: _vm.detail.discount,
-            callback: function callback($$v) {
-              _vm.$set(_vm.detail, "discount", $$v);
-            },
-            expression: "detail.discount"
-          }
-        }), _vm._v(" "), _c("b-form-invalid-feedback", {
-          attrs: {
-            id: "Discount-feedback"
-          }
-        }, [_vm._v(_vm._s(validationContext.errors[0]))])], 1)];
-      }
-    }], null, false, 378765320)
-  })], 1), _vm._v(" "), _c("b-col", {
-    attrs: {
-      lg: "6",
-      md: "6",
-      sm: "12"
-    }
-  }, [_c("validation-provider", {
-    attrs: {
-      name: "Unit Sale",
-      rules: {
-        required: true
-      }
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function fn(_ref5) {
-        var valid = _ref5.valid,
-          errors = _ref5.errors;
         return _c("b-form-group", {
           attrs: {
             label: _vm.$t("UnitSale") + " " + "*"
@@ -2356,66 +2056,6 @@ var render = function render() {
       }
     }, [_vm._v(_vm._s(_vm.formatNumber(detail_invoice.total, 2)))])]);
   }), _vm._v(" "), _c("tr", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.pos_settings.show_discount,
-      expression: "pos_settings.show_discount"
-    }],
-    staticStyle: {
-      "margin-top": "10px"
-    }
-  }, [_c("td", {
-    staticClass: "total",
-    attrs: {
-      colspan: "3"
-    }
-  }, [_vm._v(_vm._s(_vm.$t("OrderTax")))]), _vm._v(" "), _c("td", {
-    staticClass: "total",
-    staticStyle: {
-      "text-align": "right"
-    }
-  }, [_vm._v(_vm._s(_vm.invoice_pos.symbol) + " " + _vm._s(_vm.formatNumber(_vm.invoice_pos.sale.taxe, 2)) + " (" + _vm._s(_vm.formatNumber(_vm.invoice_pos.sale.tax_rate, 2)) + " %)")])]), _vm._v(" "), _c("tr", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.pos_settings.show_discount,
-      expression: "pos_settings.show_discount"
-    }],
-    staticStyle: {
-      "margin-top": "10px"
-    }
-  }, [_c("td", {
-    staticClass: "total",
-    attrs: {
-      colspan: "3"
-    }
-  }, [_vm._v(_vm._s(_vm.$t("Discount")))]), _vm._v(" "), _c("td", {
-    staticClass: "total",
-    staticStyle: {
-      "text-align": "right"
-    }
-  }, [_vm._v(_vm._s(_vm.invoice_pos.symbol) + " " + _vm._s(_vm.formatNumber(_vm.invoice_pos.sale.discount, 2)))])]), _vm._v(" "), _c("tr", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.pos_settings.show_discount,
-      expression: "pos_settings.show_discount"
-    }],
-    staticStyle: {
-      "margin-top": "10px"
-    }
-  }, [_c("td", {
-    staticClass: "total",
-    attrs: {
-      colspan: "3"
-    }
-  }, [_vm._v(_vm._s(_vm.$t("Shipping")))]), _vm._v(" "), _c("td", {
-    staticClass: "total",
-    staticStyle: {
-      "text-align": "right"
-    }
-  }, [_vm._v(_vm._s(_vm.invoice_pos.symbol) + " " + _vm._s(_vm.formatNumber(_vm.invoice_pos.sale.shipping, 2)))])]), _vm._v(" "), _c("tr", {
     staticStyle: {
       "margin-top": "10px"
     }
@@ -2565,7 +2205,233 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "i-Billing"
-  }), _vm._v("\n          " + _vm._s(_vm.$t("print")) + "\n        ")])]), _vm._v(" "), _c("validation-observer", {
+  }), _vm._v("\n          " + _vm._s(_vm.$t("print")) + "\n        ")])]), _vm._v(" "), _c("b-modal", {
+    attrs: {
+      "hide-footer": "",
+      size: "lg",
+      scrollable: "",
+      id: "Show_invoice_",
+      title: _vm.$t("Invoice_POS")
+    }
+  }, [_c("div", {
+    attrs: {
+      id: "invoice"
+    }
+  }, [_c("div", {
+    staticStyle: {
+      "max-width": "400px",
+      margin: "0px auto"
+    }
+  }, [_c("div", {
+    staticClass: "info"
+  }, [_c("h2", {
+    staticClass: "text-center"
+  }, [_vm._v(_vm._s(_vm.invoice_pos.setting.CompanyName))]), _vm._v(" "), _c("p", [_c("span", [_vm._v(_vm._s(_vm.$t("date")) + " : " + _vm._s(_vm.invoice_pos.sale.date) + " "), _c("br")]), _vm._v(" "), _c("span", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.pos_settings.show_address,
+      expression: "pos_settings.show_address"
+    }]
+  }, [_vm._v(_vm._s(_vm.$t("Adress")) + " : " + _vm._s(_vm.invoice_pos.setting.CompanyAdress) + " "), _c("br")]), _vm._v(" "), _c("span", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.pos_settings.show_email,
+      expression: "pos_settings.show_email"
+    }]
+  }, [_vm._v(_vm._s(_vm.$t("Email")) + " : " + _vm._s(_vm.invoice_pos.setting.email) + " "), _c("br")]), _vm._v(" "), _c("span", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.pos_settings.show_phone,
+      expression: "pos_settings.show_phone"
+    }]
+  }, [_vm._v(_vm._s(_vm.$t("Phone")) + " : " + _vm._s(_vm.invoice_pos.setting.CompanyPhone) + " "), _c("br")]), _vm._v(" "), _c("span", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.pos_settings.show_customer,
+      expression: "pos_settings.show_customer"
+    }]
+  }, [_vm._v(_vm._s(_vm.$t("Customer")) + " : " + _vm._s(_vm.invoice_pos.sale.client_name) + " "), _c("br")])])]), _vm._v(" "), _c("table", {
+    staticClass: "table_data"
+  }, [_c("tbody", [_vm._l(_vm.invoice_pos.details, function (detail_invoice) {
+    return _c("tr", [_c("td", {
+      attrs: {
+        colspan: "3"
+      }
+    }, [_vm._v("\n                                " + _vm._s(detail_invoice.name) + "\n                                "), _c("br", {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: detail_invoice.is_imei && detail_invoice.imei_number !== null,
+        expression: "detail_invoice.is_imei && detail_invoice.imei_number !==null"
+      }]
+    }), _vm._v(" "), _c("span", {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: detail_invoice.is_imei && detail_invoice.imei_number !== null,
+        expression: "detail_invoice.is_imei && detail_invoice.imei_number !==null "
+      }]
+    }, [_vm._v(_vm._s(_vm.$t("IMEI_SN")) + " : " + _vm._s(detail_invoice.imei_number))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.formatNumber(detail_invoice.quantity, 2)) + " " + _vm._s(detail_invoice.unit_sale) + " x " + _vm._s(_vm.formatNumber(detail_invoice.total / detail_invoice.quantity, 2)))])]), _vm._v(" "), _c("td", {
+      staticStyle: {
+        "text-align": "right",
+        "vertical-align": "bottom"
+      }
+    }, [_vm._v(_vm._s(_vm.formatNumber(detail_invoice.total, 2)))])]);
+  }), _vm._v(" "), _c("tr", {
+    staticStyle: {
+      "margin-top": "10px"
+    }
+  }, [_c("td", {
+    staticClass: "total",
+    attrs: {
+      colspan: "3"
+    }
+  }, [_vm._v(_vm._s(_vm.$t("Total")))]), _vm._v(" "), _c("td", {
+    staticClass: "total",
+    staticStyle: {
+      "text-align": "right"
+    }
+  }, [_vm._v(_vm._s(_vm.invoice_pos.symbol) + " " + _vm._s(_vm.formatNumber(_vm.invoice_pos.sale.GrandTotal, 2)))])]), _vm._v(" "), _c("tr", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.invoice_pos.sale.paid_amount < _vm.invoice_pos.sale.GrandTotal,
+      expression: "invoice_pos.sale.paid_amount < invoice_pos.sale.GrandTotal"
+    }]
+  }, [_c("td", {
+    staticClass: "total",
+    attrs: {
+      colspan: "3"
+    }
+  }, [_vm._v(_vm._s(_vm.$t("Paid")))]), _vm._v(" "), _c("td", {
+    staticClass: "total",
+    staticStyle: {
+      "text-align": "right"
+    }
+  }, [_vm._v(_vm._s(_vm.invoice_pos.symbol) + " " + _vm._s(_vm.formatNumber(_vm.invoice_pos.sale.paid_amount, 2)))])]), _vm._v(" "), _c("tr", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.invoice_pos.sale.paid_amount < _vm.invoice_pos.sale.GrandTotal,
+      expression: "invoice_pos.sale.paid_amount < invoice_pos.sale.GrandTotal"
+    }]
+  }, [_c("td", {
+    staticClass: "total",
+    attrs: {
+      colspan: "3"
+    }
+  }, [_vm._v(_vm._s(_vm.$t("Due")))]), _vm._v(" "), _c("td", {
+    staticClass: "total",
+    staticStyle: {
+      "text-align": "right"
+    }
+  }, [_vm._v(_vm._s(_vm.invoice_pos.symbol) + " " + _vm._s(parseFloat(_vm.invoice_pos.sale.GrandTotal - _vm.invoice_pos.sale.paid_amount).toFixed(2)))])])], 2)]), _vm._v(" "), _c("table", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.invoice_pos.sale.paid_amount > 0,
+      expression: "invoice_pos.sale.paid_amount > 0"
+    }],
+    staticClass: "change mt-3",
+    staticStyle: {
+      "font-size": "10px"
+    }
+  }, [_c("thead", [_c("tr", {
+    staticStyle: {
+      background: "#eee"
+    }
+  }, [_c("th", {
+    staticStyle: {
+      "text-align": "left"
+    },
+    attrs: {
+      colspan: "1"
+    }
+  }, [_vm._v(_vm._s(_vm.$t("PayeBy")) + ":")]), _vm._v(" "), _c("th", {
+    staticStyle: {
+      "text-align": "center"
+    },
+    attrs: {
+      colspan: "2"
+    }
+  }, [_vm._v(_vm._s(_vm.$t("Amount")) + ":")]), _vm._v(" "), _c("th", {
+    staticStyle: {
+      "text-align": "right"
+    },
+    attrs: {
+      colspan: "1"
+    }
+  }, [_vm._v(_vm._s(_vm.$t("Change")) + ":")])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.payments, function (payment_pos) {
+    return _c("tr", [_c("td", {
+      staticStyle: {
+        "text-align": "left"
+      },
+      attrs: {
+        colspan: "1"
+      }
+    }, [_vm._v(_vm._s(payment_pos.Reglement))]), _vm._v(" "), _c("td", {
+      staticStyle: {
+        "text-align": "center"
+      },
+      attrs: {
+        colspan: "2"
+      }
+    }, [_vm._v(_vm._s(_vm.formatNumber(payment_pos.montant, 2)))]), _vm._v(" "), _c("td", {
+      staticStyle: {
+        "text-align": "right"
+      },
+      attrs: {
+        colspan: "1"
+      }
+    }, [_vm._v(_vm._s(_vm.formatNumber(payment_pos.change, 2)))])]);
+  }), 0)]), _vm._v(" "), _c("div", {
+    staticClass: "ml-2",
+    attrs: {
+      id: "legalcopy"
+    }
+  }, [_c("p", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.pos_settings.show_note,
+      expression: "pos_settings.show_note"
+    }],
+    staticClass: "legal"
+  }, [_c("strong", [_vm._v(_vm._s(_vm.pos_settings.note_customer))])]), _vm._v(" "), _c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.pos_settings.show_barcode,
+      expression: "pos_settings.show_barcode"
+    }],
+    attrs: {
+      id: "bar"
+    }
+  }, [_c("barcode", {
+    staticClass: "barcode",
+    attrs: {
+      format: _vm.barcodeFormat,
+      value: _vm.invoice_pos.sale.Ref,
+      textmargin: "0",
+      fontoptions: "bold",
+      fontSize: "15",
+      height: "25",
+      width: "1"
+    }
+  })], 1)])])]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-outline-primary",
+    on: {
+      click: function click($event) {
+        return _vm.print_pos();
+      }
+    }
+  }, [_c("i", {
+    staticClass: "i-Billing"
+  }), _vm._v("\n                " + _vm._s(_vm.$t("print")) + "\n            ")])]), _vm._v(" "), _c("validation-observer", {
     ref: "Add_payment"
   }, [_c("b-modal", {
     attrs: {
@@ -2702,9 +2568,9 @@ var render = function render() {
     },
     scopedSlots: _vm._u([{
       key: "default",
-      fn: function fn(_ref6) {
-        var valid = _ref6.valid,
-          errors = _ref6.errors;
+      fn: function fn(_ref4) {
+        var valid = _ref4.valid,
+          errors = _ref4.errors;
         return _c("b-form-group", {
           attrs: {
             label: _vm.$t("Paymentchoice") + " " + "*"
@@ -2838,18 +2704,6 @@ var render = function render() {
       pill: ""
     }
   }, [_vm._v(_vm._s(_vm.details.length))])], 1), _vm._v(" "), _c("b-list-group-item", {
-    staticClass: "d-flex justify-content-between align-items-center"
-  }, [_vm._v("\n                      " + _vm._s(_vm.$t("OrderTax")) + "\n                      "), _c("span", {
-    staticClass: "font-weight-bold"
-  }, [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.sale.TaxNet.toFixed(2)) + " (" + _vm._s(_vm.sale.tax_rate) + " %)")])]), _vm._v(" "), _c("b-list-group-item", {
-    staticClass: "d-flex justify-content-between align-items-center"
-  }, [_vm._v("\n                      " + _vm._s(_vm.$t("Discount")) + "\n                      "), _c("span", {
-    staticClass: "font-weight-bold"
-  }, [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.sale.discount.toFixed(2)))])]), _vm._v(" "), _c("b-list-group-item", {
-    staticClass: "d-flex justify-content-between align-items-center"
-  }, [_vm._v("\n                      " + _vm._s(_vm.$t("Shipping")) + "\n                      "), _c("span", {
-    staticClass: "font-weight-bold"
-  }, [_vm._v(_vm._s(_vm.currentUser.currency) + " " + _vm._s(_vm.sale.shipping.toFixed(2)))])]), _vm._v(" "), _c("b-list-group-item", {
     staticClass: "d-flex justify-content-between align-items-center"
   }, [_vm._v("\n                      " + _vm._s(_vm.$t("Total_Payable")) + "\n                      "), _c("span", {
     staticClass: "font-weight-bold"
@@ -3003,27 +2857,6 @@ var render = function render() {
         _vm.$set(_vm.client, "city", $$v);
       },
       expression: "client.city"
-    }
-  })], 1)], 1), _vm._v(" "), _c("b-col", {
-    attrs: {
-      md: "6",
-      sm: "12"
-    }
-  }, [_c("b-form-group", {
-    attrs: {
-      label: _vm.$t("Tax_Number")
-    }
-  }, [_c("b-form-input", {
-    attrs: {
-      label: "Tax Number",
-      placeholder: _vm.$t("Tax_Number")
-    },
-    model: {
-      value: _vm.client.tax_number,
-      callback: function callback($$v) {
-        _vm.$set(_vm.client, "tax_number", $$v);
-      },
-      expression: "client.tax_number"
     }
   })], 1)], 1), _vm._v(" "), _c("b-col", {
     attrs: {

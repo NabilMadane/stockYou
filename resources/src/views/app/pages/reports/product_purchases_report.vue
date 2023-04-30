@@ -4,16 +4,16 @@
     <div v-if="isLoading" class="loading_page spinner spinner-primary mr-3"></div>
 
      <b-col md="12" class="text-center" v-if="!isLoading">
-        <date-range-picker 
-          v-model="dateRange" 
-          :startDate="startDate" 
-          :endDate="endDate" 
+        <date-range-picker
+          v-model="dateRange"
+          :startDate="startDate"
+          :endDate="endDate"
            @update="Submit_filter_dateRange"
-          :locale-data="locale" > 
+          :locale-data="locale" >
 
           <template v-slot:input="picker" style="min-width: 350px;">
               {{ picker.startDate.toJSON().slice(0, 10)}} - {{ picker.endDate.toJSON().slice(0, 10)}}
-          </template>        
+          </template>
         </date-range-picker>
       </b-col>
 
@@ -44,7 +44,7 @@
       }"
         :styleClass="showDropdown?'tableOne table-hover vgt-table full-height':'tableOne table-hover vgt-table non-height'"
       >
-       
+
         <div slot="table-actions" class="mt-2 mb-3">
           <b-button variant="outline-info ripple m-1" size="sm" v-b-toggle.sidebar-right>
             <i class="i-Filter-2"></i>
@@ -54,7 +54,7 @@
             <i class="i-File-Copy"></i> PDF
           </b-button>
           <vue-excel-xlsx
-              class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
               :data="purchases"
               :columns="columns"
               :file-name="'purchases'"
@@ -63,7 +63,7 @@
               >
               <i class="i-File-Excel"></i> EXCEL
           </vue-excel-xlsx>
-         
+
         </div>
 
       </vue-good-table>
@@ -73,7 +73,7 @@
     <b-sidebar id="sidebar-right" :title="$t('Filter')" bg-variant="white" right shadow>
       <div class="px-3 py-2">
         <b-row>
-         
+
           <!-- Supplier  -->
           <b-col md="12">
             <b-form-group :label="$t('Supplier')">
@@ -140,21 +140,21 @@ export default {
   components: { DateRangePicker },
   data() {
     return {
-      startDate: "", 
-      endDate: "", 
-      dateRange: { 
-       startDate: "", 
-       endDate: "" 
-      }, 
-      locale:{ 
+      startDate: "",
+      endDate: "",
+      dateRange: {
+       startDate: "",
+       endDate: ""
+      },
+      locale:{
           //separator between the two ranges apply
-          Label: "Apply", 
-          cancelLabel: "Cancel", 
-          weekLabel: "W", 
-          customRangeLabel: "Custom Range", 
-          daysOfWeek: moment.weekdaysMin(), 
-          //array of days - see moment documenations for details 
-          monthNames: moment.monthsShort(), //array of month names - see moment documenations for details 
+          Label: "Apply",
+          cancelLabel: "Cancel",
+          weekLabel: "W",
+          customRangeLabel: "Custom Range",
+          daysOfWeek: moment.weekdaysMin(),
+          //array of days - see moment documenations for details
+          monthNames: moment.monthsShort(), //array of month names - see moment documenations for details
           firstDay: 1 //ISO first day of week - see moment documenations for details
         },
       isLoading: true,
@@ -168,9 +168,9 @@ export default {
       },
        rows: [{
           statut: 'Total',
-         
+
           children: [
-             
+
           ],
       },],
       search: "",
@@ -223,7 +223,7 @@ export default {
           tdClass: "text-left",
           thClass: "text-left"
         },
-      
+
         {
           label: this.$t("Name_product"),
           field: "product_name",
@@ -255,7 +255,7 @@ export default {
   methods: {
 
     sumCount(rowObj) {
-     
+
     	let sum = 0;
       for (let i = 0; i < rowObj.children.length; i++) {
         sum += rowObj.children[i].quantity;
@@ -263,9 +263,9 @@ export default {
       return sum;
     },
 
-    
+
     sumCount2(rowObj) {
-     
+
     	let sum = 0;
       for (let i = 0; i < rowObj.children.length; i++) {
         sum += rowObj.children[i].total;
@@ -316,7 +316,7 @@ export default {
       this.Get_Purchases(this.serverParams.page);
     },
 
-    
+
     onSearch(value) {
       this.search = value.searchTerm;
       this.Get_Purchases(this.serverParams.page);
@@ -379,7 +379,7 @@ export default {
     },
 
 
-  
+
     //---------------------------------------- Set To Strings-------------------------\\
     setToStrings() {
       // Simply replaces null values with strings=''
@@ -387,10 +387,10 @@ export default {
         this.Filter_Supplier = "";
       } else if (this.Filter_warehouse === null) {
         this.Filter_warehouse = "";
-      } 
+      }
     },
 
-    
+
      //----------------------------- Submit Date Picker -------------------\\
     Submit_filter_dateRange() {
       var self = this;
@@ -410,7 +410,7 @@ export default {
 
         self.dateRange.startDate = today.getFullYear();
         self.dateRange.endDate = new Date().toJSON().slice(0, 10);
-        
+
       }
     },
 
@@ -464,9 +464,9 @@ export default {
         });
     },
 
-  
-  
-  
+
+
+
   },
   //----------------------------- Created function-------------------\\
   created() {

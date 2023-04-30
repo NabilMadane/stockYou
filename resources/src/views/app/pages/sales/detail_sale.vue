@@ -16,7 +16,7 @@
             <i class="i-Edit"></i>
             <span>{{$t('EditSale')}}</span>
           </router-link>
-
+        <!--
           <button @click="Sale_Email()" class="btn btn-info btn-icon ripple btn-sm">
             <i class="i-Envelope-2"></i>
             {{$t('Email')}}
@@ -24,10 +24,10 @@
            <button @click="Sale_SMS()" class="btn btn-secondary btn-icon ripple btn-sm">
             <i class="i-Speach-Bubble"></i>
             SMS
-          </button>
+          </button>-->
           <button @click="Sale_PDF()" class="btn btn-primary btn-icon ripple btn-sm">
             <i class="i-File-TXT"></i>
-            PDF
+              {{$t('DownloadPdf_')}}
           </button>
           <button @click="print()" class="btn btn-warning btn-icon ripple btn-sm">
             <i class="i-Billing"></i>
@@ -105,8 +105,8 @@
                       <th scope="col">{{$t('Net_Unit_Price')}}</th>
                       <th scope="col">{{$t('Quantity')}}</th>
                       <th scope="col">{{$t('UnitPrice')}}</th>
-                      <th scope="col">{{$t('Discount')}}</th>
-                      <th scope="col">{{$t('Tax')}}</th>
+                 <!--     <th scope="col">{{$t('Discount')}}</th>
+                      <th scope="col">{{$t('Tax')}}</th>-->
                       <th scope="col">{{$t('SubTotal')}}</th>
                     </tr>
                   </thead>
@@ -118,8 +118,8 @@
                       <td>{{currentUser.currency}} {{formatNumber(detail.Net_price,3)}}</td>
                       <td>{{formatNumber(detail.quantity,2)}} {{detail.unit_sale}}</td>
                       <td>{{currentUser.currency}} {{formatNumber(detail.price,2)}}</td>
-                      <td>{{currentUser.currency}} {{formatNumber(detail.DiscountNet,2)}}</td>
-                      <td>{{currentUser.currency}} {{formatNumber(detail.taxe,2)}}</td>
+                    <!--  <td>{{currentUser.currency}} {{formatNumber(detail.DiscountNet,2)}}</td>
+                      <td>{{currentUser.currency}} {{formatNumber(detail.taxe,2)}}</td>-->
                       <td>{{currentUser.currency}} {{detail.total.toFixed(2)}}</td>
                     </tr>
                   </tbody>
@@ -129,7 +129,7 @@
             <div class="offset-md-9 col-md-3 mt-4">
               <table class="table table-striped table-sm">
                 <tbody>
-                  <tr>
+               <!--   <tr>
                     <td>{{$t('OrderTax')}}</td>
                     <td>
                       <span>{{currentUser.currency}} {{sale.TaxNet.toFixed(2)}} ({{formatNumber(sale.tax_rate,2)}} %)</span>
@@ -142,7 +142,7 @@
                   <tr>
                     <td>{{$t('Shipping')}}</td>
                     <td>{{currentUser.currency}} {{sale.shipping.toFixed(2)}}</td>
-                  </tr>
+                  </tr>-->
                   <tr>
                     <td>
                       <span class="font-weight-bold">{{$t('Total')}}</span>
@@ -218,7 +218,7 @@ export default {
   },
 
   methods: {
-   
+
 
     //----------------------------------- Invoice Sale PDF  -------------------------\\
     Sale_PDF() {
@@ -226,7 +226,7 @@ export default {
       NProgress.start();
       NProgress.set(0.1);
       let id = this.$route.params.id;
-     
+
        axios
         .get(`sale_pdf/${id}`, {
           responseType: "blob", // important

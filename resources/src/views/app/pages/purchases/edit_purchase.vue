@@ -68,11 +68,11 @@
                  <!-- Product -->
                 <b-col md="12" class="mb-5">
                   <h6>{{$t('ProductName')}}</h6>
-                 
+
                   <div id="autocomplete" class="autocomplete">
-                    <input 
+                    <input
                      :placeholder="$t('Scan_Search_Product_by_Code_Name')"
-                      @input='e => search_input = e.target.value' 
+                      @input='e => search_input = e.target.value'
                       @keyup="search(search_input)"
                       @focus="handleFocus"
                       @blur="handleBlur"
@@ -96,8 +96,8 @@
                           <th scope="col">{{$t('Net_Unit_Cost')}}</th>
                           <th scope="col">{{$t('CurrentStock')}}</th>
                           <th scope="col">{{$t('Qty')}}</th>
-                          <th scope="col">{{$t('Discount')}}</th>
-                          <th scope="col">{{$t('Tax')}}</th>
+                        <!--  <th scope="col">{{$t('Discount')}}</th>
+                          <th scope="col">{{$t('Tax')}}</th>-->
                           <th scope="col">{{$t('SubTotal')}}</th>
                           <th scope="col" class="text-center">
                             <i class="fa fa-trash"></i>
@@ -150,8 +150,8 @@
                               </b-input-group>
                             </div>
                           </td>
-                          <td>{{currentUser.currency}} {{formatNumber(detail.DiscountNet * detail.quantity, 2)}}</td>
-                          <td>{{currentUser.currency}} {{formatNumber(detail.taxe * detail.quantity, 2)}}</td>
+                      <!--    <td>{{currentUser.currency}} {{formatNumber(detail.DiscountNet * detail.quantity, 2)}}</td>
+                          <td>{{currentUser.currency}} {{formatNumber(detail.taxe * detail.quantity, 2)}}</td>-->
                           <td>{{currentUser.currency}} {{detail.subtotal.toFixed(2)}}</td>
                           <td v-show="detail.no_unit !== 0">
                             <i @click="Modal_Updat_Detail(detail)" class="i-Edit text-25 text-success"></i>
@@ -166,7 +166,7 @@
                 <div class="offset-md-9 col-md-3 mt-4">
                   <table class="table table-striped table-sm">
                     <tbody>
-                      <tr>
+                    <!--  <tr>
                         <td class="bold">{{$t('OrderTax')}}</td>
                         <td>
                           <span>{{currentUser.currency}} {{purchase.TaxNet.toFixed(2)}} ({{formatNumber(purchase.tax_rate ,2)}} %)</span>
@@ -179,7 +179,7 @@
                       <tr>
                         <td class="bold">{{$t('Shipping')}}</td>
                         <td>{{currentUser.currency}} {{purchase.shipping.toFixed(2)}}</td>
-                      </tr>
+                      </tr>-->
                       <tr>
                         <td>
                           <span class="font-weight-bold">{{$t('Total')}}</span>
@@ -194,7 +194,7 @@
                   </table>
                 </div>
 
-                 <!-- Order Tax  -->
+          <!--       &lt;!&ndash; Order Tax  &ndash;&gt;
                 <b-col lg="4" md="4" sm="12" class="mb-3">
                   <validation-provider
                     name="Order Tax"
@@ -218,7 +218,7 @@
                   </validation-provider>
                 </b-col>
 
-                <!-- Discount -->
+                &lt;!&ndash; Discount &ndash;&gt;
                 <b-col lg="4" md="4" sm="12" class="mb-3">
                   <validation-provider
                     name="Discount"
@@ -242,7 +242,7 @@
                   </validation-provider>
                 </b-col>
 
-                <!-- Shipping  -->
+                &lt;!&ndash; Shipping  &ndash;&gt;
                 <b-col lg="4" md="4" sm="12" class="mb-3">
                   <validation-provider
                     name="Shipping"
@@ -264,7 +264,7 @@
                       >{{ validationContext.errors[0] }}</b-form-invalid-feedback>
                     </b-form-group>
                   </validation-provider>
-                </b-col>
+                </b-col>-->
 
                  <!-- Status  -->
                 <b-col lg="4" md="4" sm="12" class="mb-3">
@@ -475,7 +475,7 @@ export default {
         date: "",
         notes: "",
         supplier_id: "",
-        warehouse_id: "",
+        warehouse_id: 1,
         tax_rate: 0,
         TaxNet: 0,
         shipping: 0,
@@ -664,9 +664,9 @@ export default {
       if (this.purchase.warehouse_id != "" &&  this.purchase.warehouse_id != null) {
         this.timer = setTimeout(() => {
           const product_filter = this.products.filter(product => product.code === this.search_input || product.barcode.includes(this.search_input));
-            if(product_filter.length === 1){
+          /*  if(product_filter.length === 1){
                 this.SearchProduct(product_filter[0])
-            }else{
+            }else{*/
                 this.product_filter=  this.products.filter(product => {
                   return (
                     product.name.toLowerCase().includes(this.search_input.toLowerCase()) ||
@@ -674,7 +674,7 @@ export default {
                     product.barcode.toLowerCase().includes(this.search_input.toLowerCase())
                     );
                 });
-            }
+           // }
         }, 800);
       } else {
         this.makeToast(
@@ -1009,6 +1009,7 @@ export default {
   //----------------------------- Created function-------------------
   created() {
     this.GetElements();
+      this.Get_Products_By_Warehouse(this.purchase.warehouse_id);
   }
 };
 </script>

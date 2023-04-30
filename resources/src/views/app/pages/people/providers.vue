@@ -14,9 +14,9 @@
         @on-search="onSearch"
         :search-options="{
         enabled: true,
-        placeholder: $t('Search_this_table'),  
+        placeholder: $t('Search_this_table'),
       }"
-        :select-options="{ 
+        :select-options="{
           enabled: true ,
           clearSelectionText: '',
         }"
@@ -41,7 +41,7 @@
             <i class="i-File-Copy"></i> PDF
           </b-button>
           <vue-excel-xlsx
-              class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
               :data="providers"
               :columns="columns"
               :file-name="'providers'"
@@ -303,7 +303,7 @@
       >
         <b-form @submit.prevent="Submit_Payment_Purchase_due">
           <b-row>
-          
+
             <!-- Paying Amount  -->
             <b-col lg="6" md="12" sm="12">
               <validation-provider
@@ -386,7 +386,7 @@
       >
         <b-form @submit.prevent="Submit_Payment_purchase_return_due">
           <b-row>
-          
+
             <!-- Paying Amount -->
             <b-col lg="6" md="12" sm="12">
               <validation-provider
@@ -1293,7 +1293,7 @@ export default {
           this.$t("Warning")
         );
         this.payment.amount = 0;
-      } 
+      }
     },
 
       //-------------------------------- reset_Form_payment-------------------------------\\
@@ -1319,7 +1319,7 @@ export default {
       setTimeout(() => {
         this.$bvModal.show("modal_Pay_due");
       }, 500);
-      
+
     },
 
      //------------------------------ Print Customer_Invoice -------------------------\\
@@ -1378,7 +1378,7 @@ export default {
       return `${value[0]}.${formated}`;
     },
 
-    
+
     //-------------------------------Pay Purchase return due -----------------------------------\\
 
      //------ Validate Form Submit_Payment_purchase_return_due
@@ -1418,7 +1418,7 @@ export default {
           this.$t("Warning")
         );
         this.payment_return.amount = 0;
-      } 
+      }
     },
 
       //-------------------------------- reset_Form_payment-------------------------------\\
@@ -1444,7 +1444,7 @@ export default {
       setTimeout(() => {
         this.$bvModal.show("modal_Pay_return_due");
       }, 500);
-      
+
     },
 
      //------------------------------ Print Customer_Invoice -------------------------\\
@@ -1490,7 +1490,7 @@ export default {
     },
 
 
-    
+
   },
 
   //----------------------------- Created function-------------------\\

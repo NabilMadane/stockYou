@@ -14,9 +14,9 @@
         @on-search="onSearch"
         :search-options="{
         enabled: true,
-        placeholder: $t('Search_this_table'),  
+        placeholder: $t('Search_this_table'),
       }"
-        :select-options="{ 
+        :select-options="{
           enabled: true ,
           clearSelectionText: '',
         }"
@@ -41,7 +41,7 @@
             <i class="i-File-Copy"></i> PDF
           </b-button>
           <vue-excel-xlsx
-              class="btn btn-sm btn-outline-danger ripple m-1"
+              class="btn btn-sm btn-outline-success ripple m-1"
               :data="adjustments"
               :columns="columns"
               :file-name="'Adjustments'"

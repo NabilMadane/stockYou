@@ -1085,8 +1085,7 @@ class SalesController extends BaseController
               $utf8ar = $arabic->utf8Glyphs(substr($Html, $p[$i-1], $p[$i] - $p[$i-1]));
               $Html = substr_replace($Html, $utf8ar, $p[$i-1], $p[$i] - $p[$i-1]);
           }
-        ini_set('max_execution_time', 300);
-        ini_set("memory_limit","512M");
+
 
         $pdf = PDF::loadHTML($Html);
 
@@ -1188,8 +1187,7 @@ class SalesController extends BaseController
             $utf8ar = $arabic->utf8Glyphs(substr($Html, $p[$i-1], $p[$i] - $p[$i-1]));
             $Html = substr_replace($Html, $utf8ar, $p[$i-1], $p[$i] - $p[$i-1]);
         }
-        ini_set('max_execution_time', 300);
-        ini_set("memory_limit","512M");
+
 
         $pdf = PDF::loadHTML($Html);
 
