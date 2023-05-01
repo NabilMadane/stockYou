@@ -248,6 +248,7 @@ class ProductsController extends BaseController
                     return $query->where('deleted_at', '=', null);
                 }),
                 'name' => 'required',
+                'name_ar' => 'required',
                 'Type_barcode' => 'required',
                 'price' => 'required',
                 'category_id' => 'required',
@@ -266,6 +267,7 @@ class ProductsController extends BaseController
 
                 //-- Update Product
                 $Product->name = $request['name'];
+                $Product->name_ar = $request['name_ar'];
                 $Product->code = $request['code'];
                 $Product->Type_barcode = $request['Type_barcode'];
                 $Product->price = $request['price'];

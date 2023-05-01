@@ -548,11 +548,11 @@ var render = function render() {
   }), _vm._v("\n          " + _vm._s(_vm.$t("Filter")) + "\n        ")]), _vm._v(" "), _c("b-button", {
     attrs: {
       size: "sm",
-      variant: "outline-success m-1"
+      variant: "outline-danger ripple m-1"
     },
     on: {
       click: function click($event) {
-        return _vm.Product_PDF();
+        return _vm.Purchase_PDF();
       }
     }
   }, [_c("i", {

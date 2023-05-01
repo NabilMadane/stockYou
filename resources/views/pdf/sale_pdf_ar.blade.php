@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ar">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8">
@@ -259,7 +259,6 @@
         #details_inv>table tbody tr:last-child td {
             border: none;
         }
-
         #details_inv>table tfoot td {
             padding: 10px 20px;
             background: #FFFFFF;
@@ -323,6 +322,10 @@
             border: 2px solid;
             padding: 24px;
             width: 659px;
+        }
+        strong{
+             direction: rtl;
+            text-align: right;
         }
     </style>
 </head>
