@@ -890,127 +890,19 @@
           </button>
         </b-modal>
           <!-- Modal print Invoice -->
-          <b-modal hide-footer size="lg" scrollable id="Show_invoice_" :title="$t('Invoice_POS')">
-              <div id="invoice">
-                  <div style="max-width:400px;margin:0px auto">
-                      <div class="info">
-                          <h2 class="text-center">{{invoice_pos.setting.CompanyName}}</h2>
-                          <p>
-                              <span>{{$t('date')}} : {{invoice_pos.sale.date}} <br></span>
-                              <span v-show="pos_settings.show_address">{{$t('Adress')}} : {{invoice_pos.setting.CompanyAdress}} <br></span>
-                              <span v-show="pos_settings.show_email">{{$t('Email')}} : {{invoice_pos.setting.email}} <br></span>
-                              <span v-show="pos_settings.show_phone">{{$t('Phone')}} : {{invoice_pos.setting.CompanyPhone}} <br></span>
-                              <span v-show="pos_settings.show_customer">{{$t('Customer')}} : {{invoice_pos.sale.client_name}} <br></span>
-                          </p>
-                      </div>
-
-                      <table class="table_data">
-                          <tbody>
-                          <tr v-for="detail_invoice in invoice_pos.details">
-                              <td colspan="3">
-                                  {{detail_invoice.name}}
-                                  <br v-show="detail_invoice.is_imei && detail_invoice.imei_number !==null">
-                                  <span v-show="detail_invoice.is_imei && detail_invoice.imei_number !==null ">{{$t('IMEI_SN')}} : {{detail_invoice.imei_number}}</span>
-                                  <br>
-                                  <span>{{formatNumber(detail_invoice.quantity,2)}} {{detail_invoice.unit_sale}} x {{formatNumber(detail_invoice.total/detail_invoice.quantity,2)}}</span>
-                              </td>
-                              <td
-                                  style="text-align:right;vertical-align:bottom"
-                              >{{formatNumber(detail_invoice.total,2)}}</td>
-                          </tr>
-
-                          <!-- <tr style="margin-top:10px" v-show="pos_settings.show_discount">
-                             <td colspan="3" class="total">{{$t('OrderTax')}}</td>
-                             <td style="text-align:right;" class="total">{{invoice_pos.symbol}} {{formatNumber(invoice_pos.sale.taxe ,2)}} ({{formatNumber(invoice_pos.sale.tax_rate,2)}} %)</td>
-                           </tr>
-
-                           <tr style="margin-top:10px" v-show="pos_settings.show_discount">
-                             <td colspan="3" class="total">{{$t('Discount')}}</td>
-                             <td style="text-align:right;" class="total">{{invoice_pos.symbol}} {{formatNumber(invoice_pos.sale.discount ,2)}}</td>
-                           </tr>
-
-                           <tr style="margin-top:10px" v-show="pos_settings.show_discount">
-                             <td colspan="3" class="total">{{$t('Shipping')}}</td>
-                             <td style="text-align:right;" class="total">{{invoice_pos.symbol}} {{formatNumber(invoice_pos.sale.shipping ,2)}}</td>
-                           </tr>-->
-
-                          <tr style="margin-top:10px">
-                              <td colspan="3" class="total">{{$t('Total')}}</td>
-                              <td
-                                  style="text-align:right;"
-                                  class="total"
-                              >{{invoice_pos.symbol}} {{formatNumber(invoice_pos.sale.GrandTotal ,2)}}</td>
-                          </tr>
-
-                          <tr v-show="invoice_pos.sale.paid_amount < invoice_pos.sale.GrandTotal">
-                              <td colspan="3" class="total">{{$t('Paid')}}</td>
-                              <td
-                                  style="text-align:right;"
-                                  class="total"
-                              >{{invoice_pos.symbol}} {{formatNumber(invoice_pos.sale.paid_amount ,2)}}</td>
-                          </tr>
-
-                          <tr v-show="invoice_pos.sale.paid_amount < invoice_pos.sale.GrandTotal">
-                              <td colspan="3" class="total">{{$t('Due')}}</td>
-                              <td
-                                  style="text-align:right;"
-                                  class="total"
-                              >{{invoice_pos.symbol}} {{parseFloat(invoice_pos.sale.GrandTotal - invoice_pos.sale.paid_amount).toFixed(2)}}</td>
-                          </tr>
-                          </tbody>
-                      </table>
-
-                      <table
-                          class="change mt-3"
-                          style=" font-size: 10px;"
-                          v-show="invoice_pos.sale.paid_amount > 0"
-                      >
-                          <thead>
-                          <tr style="background: #eee; ">
-                              <th style="text-align: left;" colspan="1">{{$t('PayeBy')}}:</th>
-                              <th style="text-align: center;" colspan="2">{{$t('Amount')}}:</th>
-                              <th style="text-align: right;" colspan="1">{{$t('Change')}}:</th>
-                          </tr>
-                          </thead>
-
-                          <tbody>
-                          <tr v-for="payment_pos in payments">
-                              <td style="text-align: left;" colspan="1">{{payment_pos.Reglement}}</td>
-                              <td
-                                  style="text-align: center;"
-                                  colspan="2"
-                              >{{formatNumber(payment_pos.montant ,2)}}</td>
-                              <td
-                                  style="text-align: right;"
-                                  colspan="1"
-                              >{{formatNumber(payment_pos.change ,2)}}</td>
-                          </tr>
-                          </tbody>
-                      </table>
-
-                      <div id="legalcopy" class="ml-2">
-                          <p class="legal" v-show="pos_settings.show_note">
-                              <strong>{{pos_settings.note_customer}}</strong>
-                          </p>
-                          <div id="bar" v-show="pos_settings.show_barcode">
-                              <barcode
-                                  class="barcode"
-                                  :format="barcodeFormat"
-                                  :value="invoice_pos.sale.Ref"
-                                  textmargin="0"
-                                  fontoptions="bold"
-                                  fontSize="15"
-                                  height="25"
-                                  width="1"
-                              ></barcode>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <button @click="print_pos()" class="btn btn-outline-primary">
+          <b-modal hide-footer size="sm" scrollable id="Show_invoice_" :title="$t('DownloadPdf_')">
+              <b-col md="12" >
+              <button @click="Invoice_PDF()" class="btn btn-outline-primary">
                   <i class="i-Billing"></i>
-                  {{$t('print')}}
+                  {{$t('DownloadPdf_')}}
               </button>
+              </b-col>
+              <b-col md="12" class="mt-3">
+              <button @click="Invoice_PDF_Ar()" class="btn btn-outline-secondary">
+                  <i class="i-Billing"></i>
+                  {{$t('DownloadPdfar')}}
+              </button>
+              </b-col>
           </b-modal>
 
         <!-- Modal Add Payment-->
@@ -1320,6 +1212,7 @@ export default {
   },
   data() {
     return {
+      sale_id:"",
       langs: [
         "en",
         "fr",
@@ -1941,12 +1834,12 @@ export default {
         });
     },
       //-------------------------------- Invoice ------------------------------\\
-      Invoice_PDF(id) {
+      Invoice_PDF() {
           // Start the progress bar.
           NProgress.start();
           NProgress.set(0.1);
           axios
-              .get("sale_pdf/" + id, {
+              .get("sale_pdf/" + this.sale_id, {
                   responseType: "blob", // important
                   headers: {
                       "Content-Type": "application/json"
@@ -1967,6 +1860,33 @@ export default {
                   setTimeout(() => NProgress.done(), 500);
               });
       },
+      Invoice_PDF_Ar() {
+          // Start the progress bar.
+          NProgress.start();
+          NProgress.set(0.1);
+          axios
+              .get("sale_pdf_ar/" + this.sale_id, {
+                  responseType: "blob", // important
+                  headers: {
+                      "Content-Type": "application/json"
+                  }
+              })
+              .then(response => {
+                  const url = window.URL.createObjectURL(new Blob([response.data]));
+                  const link = document.createElement("a");
+                  link.href = url;
+                  link.setAttribute("download", "Sale.pdf");
+                  document.body.appendChild(link);
+                  link.click();
+                  // Complete the animation of the  progress bar.
+                  setTimeout(() => NProgress.done(), 500);
+              })
+              .catch(() => {
+                  // Complete the animation of the  progress bar.
+                  setTimeout(() => NProgress.done(), 500);
+              });
+      },
+
     //----------------------------------Process Payment ------------------------------\\
     async processPayment() {
       this.paymentProcessing = true;
@@ -2050,8 +1970,10 @@ export default {
               NProgress.done();
               this.paymentProcessing = false;
               //this.Invoice_POS(response.data.id);
-              this.Invoice_PDF(response.data.id);
+              //this.Invoice_PDF(response.data.id);
+                this.sale_id=response.data.id;
               this.$bvModal.hide("Add_Payment");
+              this.$bvModal.show("Show_invoice_");
               this.Reset_Pos();
             }
           })

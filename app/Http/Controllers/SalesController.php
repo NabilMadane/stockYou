@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Category;
 use Twilio\Rest\Client as Client_Twilio;
 use App\Mail\SaleMail;
 use App\Models\Client;
@@ -1042,7 +1043,12 @@ class SalesController extends BaseController
                 $data['detail_id'] = $detail_id += 1;
                 $data['quantity'] = number_format($detail->quantity, 2, '.', '');
                 $data['total'] = number_format($detail->total, 2, '.', '');
-                $data['name'] = $detail['product']['name'];
+
+                $Product= Product::find($detail->product_id);
+                $Category= Category::find($Product->category_id);
+
+
+                $data['name'] = $detail['product']['name'].' '.$Category->name;
                 $data['unitSale'] = $unit->ShortName;
                 $data['price'] = number_format($detail->price, 2, '.', '');
 
@@ -1078,13 +1084,7 @@ class SalesController extends BaseController
             'sale' => $sale,
             'details' => $details,
         ])->render();
-         $arabic = new Arabic();
-        $p = $arabic->arIdentify($Html);
 
-          for ($i = count($p)-1; $i >= 0; $i-=2) {
-              $utf8ar = $arabic->utf8Glyphs(substr($Html, $p[$i-1], $p[$i] - $p[$i-1]));
-              $Html = substr_replace($Html, $utf8ar, $p[$i-1], $p[$i] - $p[$i-1]);
-          }
 
 
         $pdf = PDF::loadHTML($Html);
@@ -1144,6 +1144,10 @@ class SalesController extends BaseController
             $data['detail_id'] = $detail_id += 1;
             $data['quantity'] = number_format($detail->quantity, 2, '.', '');
             $data['total'] = number_format($detail->total, 2, '.', '');
+
+            $Product= Product::find($detail->product_id);
+            $Category= Category::find($Product->category_id);
+            $data['category_name'] =$Category->name;
             $data['name'] = $detail['product']['name_ar'];
             $data['unitSale'] = $unit->ShortName;
             $data['price'] = number_format($detail->price, 2, '.', '');

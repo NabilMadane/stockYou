@@ -192,6 +192,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   },
   data: function data() {
     return {
+      sale_id: "",
       langs: ["en", "fr", "ar", "de", "es", "it", "Ind", "thai", "tr_ch", "sm_ch", "tur", "ru", "hn", "vn", "kr", "ba", "br"],
       stripe: {},
       stripe_key: "",
@@ -686,11 +687,38 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         return nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
       }, 500);
     });
-  }), _defineProperty(_objectSpread2, "Invoice_PDF", function Invoice_PDF(id) {
+  }), _defineProperty(_objectSpread2, "Invoice_PDF", function Invoice_PDF() {
     // Start the progress bar.
     nprogress__WEBPACK_IMPORTED_MODULE_0___default().start();
     nprogress__WEBPACK_IMPORTED_MODULE_0___default().set(0.1);
-    axios.get("sale_pdf/" + id, {
+    axios.get("sale_pdf/" + this.sale_id, {
+      responseType: "blob",
+      // important
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(function (response) {
+      var url = window.URL.createObjectURL(new Blob([response.data]));
+      var link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "Sale.pdf");
+      document.body.appendChild(link);
+      link.click();
+      // Complete the animation of the  progress bar.
+      setTimeout(function () {
+        return nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
+      }, 500);
+    })["catch"](function () {
+      // Complete the animation of the  progress bar.
+      setTimeout(function () {
+        return nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
+      }, 500);
+    });
+  }), _defineProperty(_objectSpread2, "Invoice_PDF_Ar", function Invoice_PDF_Ar() {
+    // Start the progress bar.
+    nprogress__WEBPACK_IMPORTED_MODULE_0___default().start();
+    nprogress__WEBPACK_IMPORTED_MODULE_0___default().set(0.1);
+    axios.get("sale_pdf_ar/" + this.sale_id, {
       responseType: "blob",
       // important
       headers: {
@@ -801,8 +829,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
           _this15.paymentProcessing = false;
           //this.Invoice_POS(response.data.id);
-          _this15.Invoice_PDF(response.data.id);
+          //this.Invoice_PDF(response.data.id);
+          _this15.sale_id = response.data.id;
           _this15.$bvModal.hide("Add_Payment");
+          _this15.$bvModal.show("Show_invoice_");
           _this15.Reset_Pos();
         }
       })["catch"](function (error) {
@@ -2208,230 +2238,40 @@ var render = function render() {
   }), _vm._v("\n          " + _vm._s(_vm.$t("print")) + "\n        ")])]), _vm._v(" "), _c("b-modal", {
     attrs: {
       "hide-footer": "",
-      size: "lg",
+      size: "sm",
       scrollable: "",
       id: "Show_invoice_",
-      title: _vm.$t("Invoice_POS")
+      title: _vm.$t("DownloadPdf_")
     }
-  }, [_c("div", {
+  }, [_c("b-col", {
+    staticClass: "mt-3",
     attrs: {
-      id: "invoice"
+      md: "12"
     }
-  }, [_c("div", {
-    staticStyle: {
-      "max-width": "400px",
-      margin: "0px auto"
-    }
-  }, [_c("div", {
-    staticClass: "info"
-  }, [_c("h2", {
-    staticClass: "text-center"
-  }, [_vm._v(_vm._s(_vm.invoice_pos.setting.CompanyName))]), _vm._v(" "), _c("p", [_c("span", [_vm._v(_vm._s(_vm.$t("date")) + " : " + _vm._s(_vm.invoice_pos.sale.date) + " "), _c("br")]), _vm._v(" "), _c("span", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.pos_settings.show_address,
-      expression: "pos_settings.show_address"
-    }]
-  }, [_vm._v(_vm._s(_vm.$t("Adress")) + " : " + _vm._s(_vm.invoice_pos.setting.CompanyAdress) + " "), _c("br")]), _vm._v(" "), _c("span", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.pos_settings.show_email,
-      expression: "pos_settings.show_email"
-    }]
-  }, [_vm._v(_vm._s(_vm.$t("Email")) + " : " + _vm._s(_vm.invoice_pos.setting.email) + " "), _c("br")]), _vm._v(" "), _c("span", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.pos_settings.show_phone,
-      expression: "pos_settings.show_phone"
-    }]
-  }, [_vm._v(_vm._s(_vm.$t("Phone")) + " : " + _vm._s(_vm.invoice_pos.setting.CompanyPhone) + " "), _c("br")]), _vm._v(" "), _c("span", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.pos_settings.show_customer,
-      expression: "pos_settings.show_customer"
-    }]
-  }, [_vm._v(_vm._s(_vm.$t("Customer")) + " : " + _vm._s(_vm.invoice_pos.sale.client_name) + " "), _c("br")])])]), _vm._v(" "), _c("table", {
-    staticClass: "table_data"
-  }, [_c("tbody", [_vm._l(_vm.invoice_pos.details, function (detail_invoice) {
-    return _c("tr", [_c("td", {
-      attrs: {
-        colspan: "3"
-      }
-    }, [_vm._v("\n                                " + _vm._s(detail_invoice.name) + "\n                                "), _c("br", {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: detail_invoice.is_imei && detail_invoice.imei_number !== null,
-        expression: "detail_invoice.is_imei && detail_invoice.imei_number !==null"
-      }]
-    }), _vm._v(" "), _c("span", {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: detail_invoice.is_imei && detail_invoice.imei_number !== null,
-        expression: "detail_invoice.is_imei && detail_invoice.imei_number !==null "
-      }]
-    }, [_vm._v(_vm._s(_vm.$t("IMEI_SN")) + " : " + _vm._s(detail_invoice.imei_number))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.formatNumber(detail_invoice.quantity, 2)) + " " + _vm._s(detail_invoice.unit_sale) + " x " + _vm._s(_vm.formatNumber(detail_invoice.total / detail_invoice.quantity, 2)))])]), _vm._v(" "), _c("td", {
-      staticStyle: {
-        "text-align": "right",
-        "vertical-align": "bottom"
-      }
-    }, [_vm._v(_vm._s(_vm.formatNumber(detail_invoice.total, 2)))])]);
-  }), _vm._v(" "), _c("tr", {
-    staticStyle: {
-      "margin-top": "10px"
-    }
-  }, [_c("td", {
-    staticClass: "total",
-    attrs: {
-      colspan: "3"
-    }
-  }, [_vm._v(_vm._s(_vm.$t("Total")))]), _vm._v(" "), _c("td", {
-    staticClass: "total",
-    staticStyle: {
-      "text-align": "right"
-    }
-  }, [_vm._v(_vm._s(_vm.invoice_pos.symbol) + " " + _vm._s(_vm.formatNumber(_vm.invoice_pos.sale.GrandTotal, 2)))])]), _vm._v(" "), _c("tr", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.invoice_pos.sale.paid_amount < _vm.invoice_pos.sale.GrandTotal,
-      expression: "invoice_pos.sale.paid_amount < invoice_pos.sale.GrandTotal"
-    }]
-  }, [_c("td", {
-    staticClass: "total",
-    attrs: {
-      colspan: "3"
-    }
-  }, [_vm._v(_vm._s(_vm.$t("Paid")))]), _vm._v(" "), _c("td", {
-    staticClass: "total",
-    staticStyle: {
-      "text-align": "right"
-    }
-  }, [_vm._v(_vm._s(_vm.invoice_pos.symbol) + " " + _vm._s(_vm.formatNumber(_vm.invoice_pos.sale.paid_amount, 2)))])]), _vm._v(" "), _c("tr", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.invoice_pos.sale.paid_amount < _vm.invoice_pos.sale.GrandTotal,
-      expression: "invoice_pos.sale.paid_amount < invoice_pos.sale.GrandTotal"
-    }]
-  }, [_c("td", {
-    staticClass: "total",
-    attrs: {
-      colspan: "3"
-    }
-  }, [_vm._v(_vm._s(_vm.$t("Due")))]), _vm._v(" "), _c("td", {
-    staticClass: "total",
-    staticStyle: {
-      "text-align": "right"
-    }
-  }, [_vm._v(_vm._s(_vm.invoice_pos.symbol) + " " + _vm._s(parseFloat(_vm.invoice_pos.sale.GrandTotal - _vm.invoice_pos.sale.paid_amount).toFixed(2)))])])], 2)]), _vm._v(" "), _c("table", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.invoice_pos.sale.paid_amount > 0,
-      expression: "invoice_pos.sale.paid_amount > 0"
-    }],
-    staticClass: "change mt-3",
-    staticStyle: {
-      "font-size": "10px"
-    }
-  }, [_c("thead", [_c("tr", {
-    staticStyle: {
-      background: "#eee"
-    }
-  }, [_c("th", {
-    staticStyle: {
-      "text-align": "left"
-    },
-    attrs: {
-      colspan: "1"
-    }
-  }, [_vm._v(_vm._s(_vm.$t("PayeBy")) + ":")]), _vm._v(" "), _c("th", {
-    staticStyle: {
-      "text-align": "center"
-    },
-    attrs: {
-      colspan: "2"
-    }
-  }, [_vm._v(_vm._s(_vm.$t("Amount")) + ":")]), _vm._v(" "), _c("th", {
-    staticStyle: {
-      "text-align": "right"
-    },
-    attrs: {
-      colspan: "1"
-    }
-  }, [_vm._v(_vm._s(_vm.$t("Change")) + ":")])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.payments, function (payment_pos) {
-    return _c("tr", [_c("td", {
-      staticStyle: {
-        "text-align": "left"
-      },
-      attrs: {
-        colspan: "1"
-      }
-    }, [_vm._v(_vm._s(payment_pos.Reglement))]), _vm._v(" "), _c("td", {
-      staticStyle: {
-        "text-align": "center"
-      },
-      attrs: {
-        colspan: "2"
-      }
-    }, [_vm._v(_vm._s(_vm.formatNumber(payment_pos.montant, 2)))]), _vm._v(" "), _c("td", {
-      staticStyle: {
-        "text-align": "right"
-      },
-      attrs: {
-        colspan: "1"
-      }
-    }, [_vm._v(_vm._s(_vm.formatNumber(payment_pos.change, 2)))])]);
-  }), 0)]), _vm._v(" "), _c("div", {
-    staticClass: "ml-2",
-    attrs: {
-      id: "legalcopy"
-    }
-  }, [_c("p", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.pos_settings.show_note,
-      expression: "pos_settings.show_note"
-    }],
-    staticClass: "legal"
-  }, [_c("strong", [_vm._v(_vm._s(_vm.pos_settings.note_customer))])]), _vm._v(" "), _c("div", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.pos_settings.show_barcode,
-      expression: "pos_settings.show_barcode"
-    }],
-    attrs: {
-      id: "bar"
-    }
-  }, [_c("barcode", {
-    staticClass: "barcode",
-    attrs: {
-      format: _vm.barcodeFormat,
-      value: _vm.invoice_pos.sale.Ref,
-      textmargin: "0",
-      fontoptions: "bold",
-      fontSize: "15",
-      height: "25",
-      width: "1"
-    }
-  })], 1)])])]), _vm._v(" "), _c("button", {
+  }, [_c("button", {
     staticClass: "btn btn-outline-primary",
     on: {
       click: function click($event) {
-        return _vm.print_pos();
+        return _vm.Invoice_PDF();
       }
     }
   }, [_c("i", {
     staticClass: "i-Billing"
-  }), _vm._v("\n                " + _vm._s(_vm.$t("print")) + "\n            ")])]), _vm._v(" "), _c("validation-observer", {
+  }), _vm._v("\n                " + _vm._s(_vm.$t("DownloadPdf_")) + "\n            ")])]), _vm._v(" "), _c("b-col", {
+    staticClass: "mt-3",
+    attrs: {
+      md: "12"
+    }
+  }, [_c("button", {
+    staticClass: "btn btn-outline-secondary",
+    on: {
+      click: function click($event) {
+        return _vm.Invoice_PDF_Ar();
+      }
+    }
+  }, [_c("i", {
+    staticClass: "i-Billing"
+  }), _vm._v("\n                " + _vm._s(_vm.$t("DownloadPdfar")) + "\n            ")])])], 1), _vm._v(" "), _c("validation-observer", {
     ref: "Add_payment"
   }, [_c("b-modal", {
     attrs: {

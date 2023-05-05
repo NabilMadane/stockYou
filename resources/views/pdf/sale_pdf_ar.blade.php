@@ -406,7 +406,7 @@
                     <td>{{$detail['quantity']}}/{{$detail['unitSale']}}</td>
                     <td>{{$detail['price']}} </td>
                     <td style="text-align: right">
-                        <span>{{$detail['name']}}</span>
+                        <span>{{$detail['category_name'].' '.$detail['name']}}</span>
                         @if($detail['is_imei'] && $detail['imei_number'] !==null)
                             <p>IMEI/SN : {{$detail['imei_number']}}</p>
                         @endif
