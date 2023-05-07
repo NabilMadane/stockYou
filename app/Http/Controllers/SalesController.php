@@ -1041,7 +1041,7 @@ class SalesController extends BaseController
             }
 
                 $data['detail_id'] = $detail_id += 1;
-                $data['quantity'] = number_format($detail->quantity, 2, '.', '');
+                $data['quantity'] = number_format($detail->quantity, 2, '.', '') + 0;
                 $data['total'] = number_format($detail->total, 2, '.', '');
 
                 $Product= Product::find($detail->product_id);
@@ -1142,7 +1142,7 @@ class SalesController extends BaseController
             }
 
             $data['detail_id'] = $detail_id += 1;
-            $data['quantity'] = number_format($detail->quantity, 2, '.', '');
+            $data['quantity'] = number_format($detail->quantity, 2, '.', '')+ 0;
             $data['total'] = number_format($detail->total, 2, '.', '');
 
             $Product= Product::find($detail->product_id);
