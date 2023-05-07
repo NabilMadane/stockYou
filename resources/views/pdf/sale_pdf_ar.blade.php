@@ -403,7 +403,7 @@
             @foreach ($details as $detail)
                 <tr>
                     <td>{{$detail['total']}} </td>
-                    <td>{{$detail['quantity']}}/{{$detail['unitSale']}}</td>
+                    <td>{{$detail['quantity']}} {{$detail['unitSale']}}</td>
                     <td>{{$detail['price']}} </td>
                     <td style="text-align: right">
                         <span>{{$detail['category_name'].' '.$detail['name']}}</span>

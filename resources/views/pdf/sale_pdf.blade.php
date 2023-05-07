@@ -407,7 +407,7 @@
                            @endif
                      </td>
                      <td>{{$detail['price']}} </td>
-                     <td>{{$detail['quantity']}}/{{$detail['unitSale']}}</td>
+                     <td>{{$detail['quantity']}} {{$detail['unitSale']}}</td>
                    {{--  <td>{{$detail['DiscountNet']}} </td>
                      <td>{{$detail['taxe']}} </td>--}}
                      <td>{{$detail['total']}} </td>
